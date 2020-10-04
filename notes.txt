@@ -1,0 +1,8 @@
+liste de touches dans le layer _BEPO qui doivent être retirés à la main dans post:
+(projet annulé, ceci annule l'enchaînement avec des modificateurs possible)
+
+retirer KC_RALT:
+BP_POUND, BP_4, 
+
+retirer KC_LSFT:
+(tous les chiffres), 
