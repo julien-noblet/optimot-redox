@@ -11,17 +11,18 @@ disposition est la suivante:
 * En tout temps, le OS (Windows et Linux testé, support Mac inconnu)
   aura comme seul disposition de touches de configuré comme étant le
   [Canadien Français](http://kbdlayout.info/kbdca)
-* Le clavier Redox agira « nativement » en QWERTY lorsqu'en couche #0;
-  il est programmé le plus nativement possible pour les touches
-  alphanumériques. (Évidemment, les autres touches sont des
-  ajustements qui sont un peu plus "personnel", je présume que ceci
-  est la norme en QMK :)
-* Lorsque la couche #1 est utilisée, ceci agit comme un clavier Bépo
+* Lorsque la couche 0 est utilisée, ceci agit comme un clavier Bépo
   du point de vue de l'utilisation, mais envoit au système
   d'exploitation les combinaisons de touches compatibles avec la
   disposition Canadien Français installé sur le OS. Essentiellement,
   cette disposition de touches Redox fait la "traduction" de
   Bépo vers le Canaiden Français.
+* Le clavier Redox agira en bon vieux QWERTY lorsqu'en couche 1, une
+  fois qu'on appuie sur la touche du coin en bas à droite sur la
+  moitié de droite. Il est programmé le plus nativement possible pour
+  les touches alphanumériques. (Évidemment, les autres touches sont
+  des ajustements qui sont un peu plus "personnel", je présume que
+  ceci est la norme en QMK :)
   
 Pourquoi?
 
@@ -43,6 +44,33 @@ Pourquoi?
   pouvoir aider le prochain nouveau venu qui cherche une config
   similaire au mien. Suggestions des vétérans QMK bienvenus!
 
+## Omissions, déviation du standard Bépo et autres bugs
+Tel que mentionné plus haut, j'ai fait de mon mieux pour faire marcher
+l'alphabet de base sous Bépo mais pas toutes les couches, car une
+bonne partie ne fonctionnerait pas de manière /cross-platform/ entre
+plusieurs OS. De plus, notez ces détails:
+
+* Bug majeur: Les accents graves et aigus en majuscule ne fonctionnent
+  pas pour le moment en accès via le modificateur AltGr. Par exemple,
+  faire « `AltGr`-`è`, `Shift`-`A` » pour faire un `À` va seulement
+  taper la lettre minuscule et sans accent.
+* Dû à la dispositon physique de clavier Redox, il me manquait en fait
+  les touches à droite pour les lettres `z` et `w` sur la première
+  rangée. Je les ai donc mis sur les touches doubles dans le milieu du
+  clavier, ceux faisant partie des rangées 2 et 3, de façon temporaire
+  à l'origine. Eh bien dans mon cas j'ai assez vite ré-appris avec ces
+  emplacements non-officiel, ce qui en fait que je l'ai publié dans le
+  projet tel-quel.
+  * À noter que des touches non attribués existe à la suite du AltGr à
+    droite; il ne serait pas impossible d'attribuer ces lettres mal
+    placés à ces touches. Je laisse le soin « au prochain » de tester
+    et voir si ça fait du sens. Dans mon cas, en double apprentissage
+    Bépo et Redox à la fois, rajouter une autre rangée de lettres
+    semblait pas du tout naturel à mes pauvres doigts qui en arrachait
+    assez déjà :)
+* J'ai personnalisé la série de touches `à`-`y`-`x`-`.`-`k` pour
+  l'accès avec le modifieur `AltGr`, pour cette série non standard:
+  `\`-`{`-`|`-`}`-`~`
 
 ## Installation
 Quoique pas un guide officiel, je vais présumer qu'il y a possibilité

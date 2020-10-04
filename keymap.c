@@ -31,14 +31,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   // returns false si le keypress ne demande pas de traitement supplémentaire par QMK, true si le keypress n'est pas traité ici.
 
   // TODO: 
+  // - Bug majeur: les combinaisons AltGr+è U majuscule pour faire Ù ne fonctionne pas « all across the board »: on ne voit que la lettre de base et en minuscule, pas d'accent
   // - Linux i3 Alt(+Shift en bépo)+chiffre ne fonctionne pas. Même avec les fixes de event.release. rajouté un layer "natif" pour compenser.
   // - Avoir PouceDroit faire Enter et Move+PouceDroit faire la touche Delete est une recette pour des désastres; changer! Suggestion: mettre insert et delete sur les petites touches juste au-toutes
-  // - remettre mon ordre custom dans le altgr+(zxcv) pour les caractères spéciaux {} \ |...
-  // - des fois, le arobas (A commercial) ne passe pas, il semble être bloqué au niveau du OS à la job... c'est chiant d'écrire des courriels!
-  
-  // - les combinaisons AltGr+è U majuscule pour faire Ù ne fonctionne pas « all across the board »: on ne voit que la lettre de base et en minuscule, pas d'accent
-  // 
-  //uint8_t layer = biton32(layer_state);
+  // - des fois, le arobas (A commercial) ne passe pas, il semble être bloqué au niveau du OS à la job... ça devient chiant d'écrire des courriels quand ça arrive!
 
 
 #ifdef CONSOLE_ENABLE
@@ -636,9 +632,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
       if (keycode == BP_X) {
 	if ((current_mods & MOD_BIT (KC_RALT))) {
-	  clear_mods(); // }
-	  register_code(KC_RALT);
-	  register_code(KC_BSLS);
+	  clear_mods(); //| 
+	  register_code(KC_LSFT);
+	  register_code(KC_GRV);
 	}
 	else {
 	  register_code(KC_X);
@@ -648,8 +644,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       } 
 
       if (keycode == BP_DOT) {
-	// TODO: trouver '…' points de suspension sur le clavier ca-FR
-	if ((current_mods & MOD_BIT (KC_LSFT)) || (current_mods & MOD_BIT (KC_RSFT))) {
+	// TODO: a été mis à "}", faute de trouver '…' (points de suspension) sur le clavier ca-FR
+	if ((current_mods & MOD_BIT (KC_RALT))) {
+	  clear_mods(); // }
+	  register_code(KC_RALT);
+	  register_code(KC_BSLS);
+	}	
+	else if ((current_mods & MOD_BIT (KC_LSFT)) || (current_mods & MOD_BIT (KC_RSFT))) {
 	  uint8_t temp_mod = get_mods(); 
 	  clear_mods();
 	  register_code(KC_LSFT);  
