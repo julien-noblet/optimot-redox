@@ -21,9 +21,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define USE_SERIAL
 // #define USE_I2C
 
-/* Select hand configuration */
+// utiliser cette ligne pour une config gaucher (câble USB à gauche)
 // #define MASTER_LEFT
+
+// **OU BIEN** (ne pas définir les deux à la fois)
+
+// utiliser cette ligne pour une config droitier (câble USB à droite)
 #define MASTER_RIGHT
+
+
+
 // #define EE_HANDS
 
 

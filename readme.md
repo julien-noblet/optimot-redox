@@ -1,12 +1,14 @@
 # Redox avec Bépo via la dispositon Canadien Français
 
+![Résumé des différentes fonctions du Redox Bépo](keyboard-layout-main.png)
+
 Ce projet contient un layout pour le [Clavier
-Redox](https://github.com/mattdibi/redox-keyboard) ayant la
-disposition QWERTY standard dans la couche de base, mais ayant une
-[Disposition Bépo](https://bepo.fr/wiki/Accueil) comme deuxième couche
-en tant que "wrapper" par-dessus la disposition Canadien Français
-installé du côté OS. En d'autre termes, l'utilisation de cette
-disposition est la suivante:
+Redox](https://github.com/mattdibi/redox-keyboard) ayant une
+[Disposition Bépo](https://bepo.fr/wiki/Accueil) comme couche de base
+(en tant que "wrapper" par-dessus la disposition Canadien Français
+installé du côté OS), et ayant la disposition QWERTY standard dans une
+deuxième couche. En d'autre termes, l'utilisation de cette disposition
+est la suivante:
 
 * En tout temps, le OS (Windows et Linux testé, support Mac inconnu)
   aura comme seul disposition de touches de configuré comme étant le
@@ -94,7 +96,7 @@ mon build:
     servir d'alternative ), ou vous pouvez le faire en programmant une
     touche de votre choix sur la commande QMK `RESET`.
 * Personnellement, j'utilise des scripts Bash dans l'interface MinGW64
-  qui invoque `avrdude`. La documentation officielle de avrdure n'est
+  qui invoque `avrdude`. La documentation officielle de avrdude n'est
   pas toujours claire, mais voir sur le site de
   [LadyADA](http://ladyada.net/learn/avr/avrdude.html) pour une
   meilleure intro a cet outil.
@@ -131,17 +133,21 @@ mon build:
   Redox](https://github.com/mattdibi/redox-keyboard/tree/master/redox#firmware)
   mentionne comment flasher les contrôleurs brièvement, mais pour expliquer: 
   * Tenir la commande `avrdude` prête à être exécutée. Une fois qu'on
-    appuie sur le bouton Reset au dos du clavier, on est en mode RESET
-    pour environ 10 secondes max. Ensuite, le clavier se réinitialise
-    en mode normal (exécute le firmware). Je recommande taper toute la
-    commande de avrdude, avec ses paramètres, mais sans appuyer tout
-    de suite sur Entrée. Appuyer sur Reset, et ensuite Entrée (depuis
-    un autre clavier :) ) pour lancer votre commande avrdude.
+    appuie sur le bouton Reset au dos du clavier, le clavier tombe en
+    mode RESET (équivalent à un mode recovery sous Android) pour
+    environ 10 secondes max. Ensuite, le clavier redémarre en mode
+    normal (exécute à nouveau le firmware) pour faire fonctionner le
+    clavier normalement. Je recommande taper toute la commande de
+    avrdude, avec ses paramètres, mais sans appuyer tout de suite sur
+    Entrée. Appuyer sur Reset sur le clavier, et ensuite Entrée
+    (depuis un autre clavier :) ) pour lancer votre commande avrdude
+    lorsque le clavier tombe en mode Reset.
 * Avant toute modifications, carrément le jour que j'ai reçu mon
   clavier, j'ai fait un backup des partitions sur le flash du clavier,
   au cas où tout tourne mal. J'ai trouvé ceci sur le net qui m'a donné
-  des backups de chaque partition. Changer `COM5` par ce que QMK
-  Toolbox nous dit lorsque le clavier est en mode flash.
+  des backups de chaque partition. Changer toute mentions de `COM5`
+  dans l'exemple par ce que QMK Toolbox va vous dire lorsque le clavier
+  bascule en mode reset.
 
 ```
 #!/bin/bash
@@ -167,12 +173,14 @@ avrdude -P COM5 -c avr109 -p atmega32u4 -U efuse:r:backup_efuse.bin:r
 ```
 
 Le script demande de appuyer sur Enter, car après chaque download
-effectué, le clavier reboot en mode normal. Ce qui veut dire qu'à
-chaque demande d'appuyur sur Enter, le clavier redémarre en mode
-normal pour utilisation. Il faudra à nouveau appuyer sur le bouton
-Reset derrière le clavier pour lancer la commande avrdude suivante.
-Note: les lignes en commentaires dans le script ci-haut sont des
-exportations dans un format alternatifs suggéré par LadyADA.
+effectué, le clavier n'attend pas ses 10 secondes et reboot en mode
+normal d'utilisation immédiatement. Ce qui veut dire qu'à chaque
+demande d'appuyur sur Enter, avrdude télécharge une partition et le
+clavier redémarre immédiatement ensuite en mode normal pour
+utilisation. Il faudra à nouveau appuyer sur le bouton Reset derrière
+le clavier pour lancer la commande avrdude suivante. Note: les lignes
+en commentaires dans le script ci-haut sont des exportations dans un
+format alternatifs suggéré par LadyADA.
 
 
 * Pour les commandes `qmk` (ex: `qmk compile`), le chemin par défaut
@@ -225,15 +233,15 @@ au besoin.)
   instructions de câblage LED tel qu'affiché sur [le repo
   Github](https://github.com/mattdibi/redox-keyboard/tree/master/redox#assembly-guide))
   est GAUCHER. Ceci est changeable en définissant cet variables dans
-  `config.h`:
+  le fichier `config.h`:
 
 ```
-// utiliser cette ligne pour une config gaucher (USB à gauche)
+// utiliser cette ligne pour une config gaucher (câble USB à gauche)
 #define MASTER_LEFT
 
 // **OU** (ne pas définir les deux)
 
-// utiliser cette ligne pour une config droitier (USB à droite)
+// utiliser cette ligne pour une config droitier (câble USB à droite)
 #define MASTER_RIGHT
 ```
 
@@ -242,11 +250,13 @@ au besoin.)
   par exemple les touches QWERTY partent de la DROITE et à reculons
   sur le clavier de droite (mais ceci affecte TOUT le clavier),
   brancher l'entrée USB de l'autre côté.
-  * Fait intéressant pour l'utilisation droitière: la configuration
-    des LEDs ne fonctionnera jamais, car il est prévu que le MASTER
-    soit la gauche, et ce au niveau électronique: le câblage (encore
-    une fois, de FalbaTech et tel que les instructions Github)
-    s'assure de relier les pins de data si elle parte de la gauche. On
-    ne peut même pas utiliser LED_TOGGLE pour allumer ou éteindre les
-    LEDs. Voir [les photos du repo Redox sur
-    Github](https://github.com/mattdibi/redox-keyboard/tree/master/redox#rgb-underglow).
+  * Fait intéressant pour l'utilisation droitière pour le clavier de
+    Falbatech: la configuration des LEDs ne fonctionnera jamais
+    lorsque branché à droite, car il est prévu que le câble soit la
+    gauche, et ce au niveau électronique: le câblage (encore une fois,
+    de FalbaTech et tel que les instructions Github) s'assure de
+    relier les pins de data si elle parte de la gauche. On ne peut
+    même pas utiliser LED_TOGGLE pour allumer ou éteindre les LEDs.
+    Voir [les photos du repo Redox sur
+    Github](https://github.com/mattdibi/redox-keyboard/tree/master/redox#rgb-underglow)
+    qui donne un indice en ce sens.
