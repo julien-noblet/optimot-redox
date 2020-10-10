@@ -1,6 +1,13 @@
 # Redox avec Bépo via la dispositon Canadien Français
 
-![Résumé des différentes fonctions du Redox Bépo](keyboard-layout-main.png)
+![Résumé des différentes fonctions du Redox
+Bépo](keyboard-layout-main.png) 
+
+(Note: ceci ne montre que les touches
+les plus utilisés - les couches (marqués par des touches de couleur)
+sont un peu plus garnies en fonctionnalité)
+
+--
 
 Ce projet contient un layout pour le [Clavier
 Redox](https://github.com/mattdibi/redox-keyboard) ayant une
@@ -46,7 +53,7 @@ Pourquoi?
   pouvoir aider le prochain nouveau venu qui cherche une config
   similaire au mien. Suggestions des vétérans QMK bienvenus!
 
-## Omissions, déviation du standard Bépo et autres bugs
+## Omissions, déviation du standard Bépo et autres notes
 Tel que mentionné plus haut, j'ai fait de mon mieux pour faire marcher
 l'alphabet de base sous Bépo mais pas toutes les couches, car une
 bonne partie ne fonctionnerait pas de manière /cross-platform/ entre
@@ -73,6 +80,25 @@ plusieurs OS. De plus, notez ces détails:
 * J'ai personnalisé la série de touches `à`-`y`-`x`-`.`-`k` pour
   l'accès avec le modifieur `AltGr`, pour cette série non standard:
   `\`-`{`-`|`-`}`-`~`
+* Il y a une touche raccourci `Alt+F4` sur la touche `Déplacement+É`,
+  qui imite vaguement un `Ctrl+W` sur un clavier QWERTY.
+* La touche d'extrème-droite d'en haut, BackSpace, sert
+  essentiellement de compatibilité pour les pauvres gens empruntant
+  mon clavier sous QWERTY; je ne savais pas à quoi l'attribuer sous
+  Bépo. Je suis au courant de la redondance avec la touche à
+  l'emplacement CapsLock d'un clavier standard :)
+  * Également je reconnais la redondance pour Tab, au pouce gauche et
+    à son emplacement standard.
+* Noter que les touches de changements de couche ont la mention
+  "Switch" ou "Tenir", qui font référence au comportement /
+  utilisation de cette touche: "Tenir" est une touche qui s'active
+  seulement en tenant la touche enfoncée, "Switch" bascule de manière
+  permanente jusqu'à ce qu'on appuie dessus à nouveau.
+  * Mon *killer app* est d'utiliser la disposition du mouvement de
+	base de vim (touches `hjkl` QWERTY) tel quel sur ma main droite:
+	en tenant la touche "Déplacement" et utiliser `CTSR` comme étant
+	mes flèches du clavier. Voir les attribution de touches marqués en
+	rouge sur la main droite dans l'image résumé du début du readme.
 
 ## Installation
 Quoique pas un guide officiel, je vais présumer qu'il y a possibilité
