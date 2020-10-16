@@ -1,45 +1,10 @@
 # Disopsition Bépo sur clavier Redox (Canadien Français)
 
-## Layers
-
-### Bépo
-
 ![Résumé des différentes fonctions du Redox
 Bépo](./images/keyboard-layout-main.png) 
 
 Résumé en un clin d'oeil des autres couches - voir images suivantes
 pour les détails de chaque layer
-
-### Mouvement
-
-![Layer Mouvement](./images/keyboard-layout-move.png) 
-
-### Fonctions
-
-![Layer Function](./images/keyboard-layout-fn.png) 
-
-### Touches Natives (en cas de pépins avec le layer Bépo)
-
-![Layer Natif](./images/keyboard-layout-native.png) 
-
-
-### AltGr
-
-![Layer AltGr](./images/keyboard-layout-altgr.png) 
-
-
-### AltGr Grave (touche morte)
-
-![Layer Grave](./images/keyboard-layout-altgr-grave.png) 
-
-
-### AltGr Aigu (touche morte)
-
-![Layer Aigu](./images/keyboard-layout-altgr-acute.png) 
-
-### AltGr Circonflexe (touche morte)
-
-![Layer Circonflexe](./images/keyboard-layout-altgr-circ.png) 
 
 
 ## Détails
@@ -87,6 +52,58 @@ Pourquoi?
   configuration fonctionnelle pour mes besoins, dans l'espoir de
   pouvoir aider le prochain nouveau venu qui cherche une config
   similaire au mien. Suggestions des vétérans QMK bienvenus!
+
+## Layers supplémentaires
+
+### Mouvement
+
+![Layer Mouvement](./images/keyboard-layout-move.png) 
+
+### Fonctions
+
+![Layer Function](./images/keyboard-layout-fn.png) 
+
+Le mode reset met le clavier en mode programmation, prêt pour flasher
+un nouveau firmware. Ceci est l'équivalent à appuyer sur le bouton au
+dos du clavier.
+
+### Touches Natives (en cas de pépins avec le layer Bépo)
+
+![Layer Natif](./images/keyboard-layout-native.png) 
+
+Ceci est pourrait être requis pour contourner les potentiels troubles
+avec touches spéciales (implicant les F-Keys, modificateurs, ...) et
+qui ne seraient pas fonctionnel sous la couche Bépo dans une
+combinaison spéciale que je n'aurais pas vu ou testé.
+
+### AltGr
+
+![Layer AltGr](./images/keyboard-layout-altgr.png) 
+
+La touche AltGr est "presque" standard avec Bépo, sauf pour la
+dernière rangée de gauche. (Selon mes besoins).
+
+Les touches mortes notés en gris sont répertoriés dans les layers
+ci-bas. Seuls les lettres utiles dans le Français courant pour le
+Québec (Canadien Français « *d'Amarique du Nord* » :) ) a été
+implanté dans ce keymap.
+
+Les lettres "accent" tel-quel (ex: `^`) sont atteignables en appuyant
+sur espace, chose possible sur le clavier Canadien Français de base.
+
+### AltGr Grave (touche morte)
+
+![Layer Grave](./images/keyboard-layout-altgr-grave.png) 
+
+
+### AltGr Aigu (touche morte)
+
+![Layer Aigu](./images/keyboard-layout-altgr-acute.png) 
+
+### AltGr Circonflexe (touche morte)
+
+![Layer Circonflexe](./images/keyboard-layout-altgr-circ.png) 
+
 
 ## Omissions, déviation du standard Bépo et autres notes
 Tel que mentionné plus haut, j'ai fait de mon mieux pour faire marcher
