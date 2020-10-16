@@ -29,8 +29,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // utiliser cette ligne pour une config droitier (câble USB à droite)
 #define MASTER_RIGHT
 
-
-
 // #define EE_HANDS
 
 

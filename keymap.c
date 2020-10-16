@@ -31,49 +31,66 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   // returns false si le keypress ne demande pas de traitement supplémentaire par QMK, true si le keypress n'est pas traité ici.
 
   // TODO: 
-  // - Bug majeur: les combinaisons AltGr+è U majuscule pour faire Ù ne fonctionne pas « all across the board »: on ne voit que la lettre de base et en minuscule, pas d'accent
+  // - Bug majeur (fixed): les combinaisons AltGr+è U majuscule pour faire Ù ne fonctionne pas « all across the board »: on ne voit que la lettre de base et en minuscule, pas d'accent
   // - Linux i3 Alt(+Shift en bépo)+chiffre ne fonctionne pas. Même avec les fixes de event.release. rajouté un layer "natif" pour compenser.
   // - Avoir PouceDroit faire Enter et Move+PouceDroit faire la touche Delete est une recette pour des désastres; changer! Suggestion: mettre insert et delete sur les petites touches juste au-toutes
   // - des fois, le arobas (A commercial) ne passe pas, il semble être bloqué au niveau du OS à la job... ça devient chiant d'écrire des courriels quand ça arrive!
 
 
 #ifdef CONSOLE_ENABLE
-    uprintf("KL: kc: %u, col: %u, row: %u, pressed: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed);
+  //uprintf("KL: kc: %u, col: %u, row: %u, pressed: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed);
 #endif
     
   if (record->event.pressed) {
     //uprintf("Start de event.pressed. mods=%d\n", get_mods());
     
     if (IS_LAYER_ON(_BEPOALTGRGRAVE)) { // layer accent grave
+      uint8_t current_mods = get_mods();
+      bool shifted = false;
+      if ((current_mods & MOD_BIT (KC_LSFT)) || (current_mods & MOD_BIT (KC_RSFT))) shifted = true;
+      clear_mods();
+
+      //shift uniquement = laisser QMK traiter le keypress
+      if (keycode == KC_LSFT || keycode == KC_RSFT) return true;
       
       if (keycode == BP_A) {
 	tap_code(KC_QUOT);
+	if (shifted) register_code(KC_LSFT);
 	tap_code(KC_A);
+	if (shifted) unregister_code(KC_LSFT);
 	layer_move(_BEPO);
 	return false;
       }
       
       if (keycode == BP_U) {
 	tap_code(KC_QUOT);
+	if (shifted) register_code(KC_LSFT);
 	tap_code(KC_U);
+	if (shifted) unregister_code(KC_LSFT);
 	layer_move(_BEPO);
 	return false;
       }    
       if (keycode == BP_I) {
 	tap_code(KC_QUOT);
+	if (shifted) register_code(KC_LSFT);
 	tap_code(KC_I);
+	if (shifted) unregister_code(KC_LSFT);
 	layer_move(_BEPO);
 	return false;
       }    
       if (keycode == BP_E) {
 	tap_code(KC_QUOT);
+	if (shifted) register_code(KC_LSFT);
 	tap_code(KC_E);
+	if (shifted) unregister_code(KC_LSFT);
 	layer_move(_BEPO);
 	return false;
       }    
       if (keycode == BP_O) {
 	tap_code(KC_QUOT);
+	if (shifted) register_code(KC_LSFT);
 	tap_code(KC_O);
+	if (shifted) unregister_code(KC_LSFT);
 	layer_move(_BEPO);
 	return false;
       }
@@ -83,7 +100,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	layer_move(_BEPO);
 	return false;
       }
-      //if (keycode == BP_BSPC) { layer_move(_BEPO); return false; }
+      //if (keycode == BP_BSPC) { layer_move(_BEPO); return false; } 
       // cas par défaut:
       layer_move(_BEPO);
       return false; 
@@ -93,6 +110,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       bool shifted = false;
       if ((keyboard_report->mods & MOD_BIT (KC_LSFT)) || (keyboard_report->mods & MOD_BIT (KC_RSFT))) { shifted = true; }
       clear_mods();
+
+      //shift uniquement = laisser QMK traiter le keypress
+      if (keycode == KC_LSFT || keycode == KC_RSFT) return true;
       
       if (keycode == BP_A) {
 	register_code(KC_RALT);
@@ -162,34 +182,50 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
         
     if (IS_LAYER_ON(_BEPOALTGRCIRC)) { // layer accent circonflexe
+      bool shifted = false;
+      if ((keyboard_report->mods & MOD_BIT (KC_LSFT)) || (keyboard_report->mods & MOD_BIT (KC_RSFT))) { shifted = true; }
+      clear_mods();
 
+      //shift uniquement = laisser QMK traiter le keypress
+      if (keycode == KC_LSFT || keycode == KC_RSFT) return true;
+      
       if (keycode == BP_A) {
 	tap_code(KC_LBRC);
+	if (shifted) register_code(KC_LSFT);
 	tap_code(KC_A);
+	if (shifted) unregister_code(KC_LSFT);
 	layer_move(_BEPO);
 	return false;
       }    
       if (keycode == BP_U) {
 	tap_code(KC_LBRC);
+	if (shifted) register_code(KC_LSFT);
 	tap_code(KC_U);
+	if (shifted) unregister_code(KC_LSFT);
 	layer_move(_BEPO);
 	return false;
       }    
       if (keycode == BP_I) {
 	tap_code(KC_LBRC);
+	if (shifted) register_code(KC_LSFT);
 	tap_code(KC_I);
+	if (shifted) unregister_code(KC_LSFT);
 	layer_move(_BEPO);
 	return false;
       }    
       if (keycode == BP_E) {
 	tap_code(KC_LBRC);
+	if (shifted) register_code(KC_LSFT);
 	tap_code(KC_E);
+	if (shifted) unregister_code(KC_LSFT);
 	layer_move(_BEPO);
 	return false;
       }    
       if (keycode == BP_O) {
 	tap_code(KC_LBRC);
+	if (shifted) register_code(KC_LSFT);
 	tap_code(KC_O);
+	if (shifted) unregister_code(KC_LSFT);
 	layer_move(_BEPO);
 	return false;
       }
@@ -209,6 +245,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (IS_LAYER_ON(_BEPO)) {
       // uprintf("KL: kc: %u, col: %u, row: %u, pressed: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed);
       uint8_t current_mods = get_mods();
+
+      // peut ne pas être utile - a voir
+      if (keycode == KC_LSFT || keycode == KC_RSFT) return true;
+      if (keycode == KC_LALT || keycode == KC_RALT) return true; 
+      if (keycode == KC_LCTRL || keycode == KC_RCTRL) return true; 
       
       if (keycode == BP_POUND) {
 	if ((current_mods & MOD_BIT (KC_RALT))) { // '\'
@@ -228,6 +269,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
     
       if (keycode == BP_1) {
+	if ((current_mods & MOD_BIT (KC_LALT))) { // TODO: monter Alt+Chiffres du haut du clavier si Alt appuyé 
+	  clear_mods(); // 'Alt+1'
+	  register_code(KC_LALT);	  
+	  register_code(KC_1);	  
+	}
 	//if ((current_mods & MOD_BIT (KC_RALT))) {
 	  // undefined a voir plus tard
 	//}      
@@ -514,7 +560,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;      
       }
 
-      if (keycode == BP_CCED) { // tester majuscule auto
+      if (keycode == BP_CCED) {
 	bool shiftPressed = false;
 	if ((current_mods & MOD_BIT (KC_LSFT)) || (current_mods & MOD_BIT (KC_RSFT))) shiftPressed = true;	
 	clear_mods();
@@ -527,7 +573,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
 
       if (keycode == BP_A) {
-	// TODO: Trouver pour æ (caractere ae)
+	// TODO: Trouver pour æ (caractere ae sur AltGr)
 	register_code(KC_A);      
 	return false;      
       }
@@ -609,7 +655,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	  register_code(KC_RALT);
 	  register_code(KC_GRV);
 	} else { // à
-	  //pas répétable
+	  //todo: actuellement pas répétable
 	  tap_code(KC_QUOT);
 	  tap_code(KC_A);
 	}
@@ -644,7 +690,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       } 
 
       if (keycode == BP_DOT) {
-	// TODO: a été mis à "}", faute de trouver '…' (points de suspension) sur le clavier ca-FR
+	// TODO: a été mis à "}", faute de trouver '…' (points de suspension) sur le clavier Canadien Français
 	if ((current_mods & MOD_BIT (KC_RALT))) {
 	  clear_mods(); // }
 	  register_code(KC_RALT);
@@ -678,7 +724,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
       if (keycode == BP_APOS) {
 	//if ((current_mods & MOD_BIT (KC_RALT))) {
-	//  send_string("¿");
+	//  send_string("¿"); //TODO: Trouver
 	//}
 	if ((current_mods & MOD_BIT (KC_LSFT)) || (current_mods & MOD_BIT (KC_RSFT))) {
  	  clear_mods(); // ?
@@ -748,7 +794,7 @@ void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
     //                                  génère des input en trop. doit les clairer ici en code.
 
     clear_keyboard_but_mods(); // en cours de test, semble prometteur
-                              // MAJ Septembre 2020: Marche à 99%! Des fois une touche colle, rarement. À diagnostiquer.
+                               // MAJ Septembre 2020: Marche à 99.9%! Des fois une touche colle, rarement. À diagnostiquer.
 
     // ne PAS tenter de relacher les autres touches "virtuelles".
     // sinon, les enchaînements avec modificateurs risquent de ne pas

@@ -59,10 +59,14 @@ l'alphabet de base sous Bépo mais pas toutes les couches, car une
 bonne partie ne fonctionnerait pas de manière /cross-platform/ entre
 plusieurs OS. De plus, notez ces détails:
 
-* Bug majeur: Les accents graves et aigus en majuscule ne fonctionnent
-  pas pour le moment en accès via le modificateur AltGr. Par exemple,
-  faire « `AltGr`-`è`, `Shift`-`A` » pour faire un `À` va seulement
-  taper la lettre minuscule et sans accent.
+* Bug majeur (fixed?): Les accents graves et aigus en majuscule ne
+  fonctionnent pas pour le moment en accès via le modificateur AltGr.
+  Par exemple, faire « `AltGr`-`è`, `Shift`-`A` » pour faire un `À` va
+  seulement taper la lettre minuscule et sans accent.
+* Bug: AltGauche ou CtrlGauche avec les chiffres ne fonctionne pas- ni
+  directement, ni via le modificateur Shift. Workaround dans le layer
+  Function pour l'instant, mais trouver comment passer les
+  mods+chiffres dans le layer principal.
 * Dû à la dispositon physique de clavier Redox, il me manquait en fait
   les touches à droite pour les lettres `z` et `w` sur la première
   rangée. Je les ai donc mis sur les touches doubles dans le milieu du
