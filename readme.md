@@ -59,10 +59,10 @@ l'alphabet de base sous Bépo mais pas toutes les couches, car une
 bonne partie ne fonctionnerait pas de manière /cross-platform/ entre
 plusieurs OS. De plus, notez ces détails:
 
-* Bug majeur (fixed?): Les accents graves et aigus en majuscule ne
+* ~~Bug majeur (fixed?): Les accents graves et aigus en majuscule ne
   fonctionnent pas pour le moment en accès via le modificateur AltGr.
   Par exemple, faire « `AltGr`-`è`, `Shift`-`A` » pour faire un `À` va
-  seulement taper la lettre minuscule et sans accent.
+  seulement taper la lettre minuscule et sans accent.~~
 * Bug (fixed, CapsLock remapped): Les combinaisons `Shift+FKeys` (ex:
   `Shift+F1`) ne marche pas actuellement, car Caps Lock est attribué à
   Fn+Shift.

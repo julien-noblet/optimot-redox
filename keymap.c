@@ -458,8 +458,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;
       }
 
-      if (keycode == BP_EQUAL) { // 
-	if ((current_mods & MOD_BIT (KC_LSFT)) || (current_mods & MOD_BIT (KC_RSFT))) {
+      if (keycode == BP_EQUAL) { //
+       	if ( (current_mods & MOD_BIT (KC_LALT)) || (current_mods & MOD_BIT (KC_LCTRL)) || (current_mods & MOD_BIT (KC_LGUI)) ) { 
+	  register_code(KC_MINS); // 'Modificateurs déjà appuyés' + '-' sur QWERTY
+	}
+	else if ((current_mods & MOD_BIT (KC_LSFT)) || (current_mods & MOD_BIT (KC_RSFT))) {
 	  clear_mods(); 
 	  register_code(KC_RALT);
 	  register_code(KC_NUBS);
@@ -473,7 +476,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
 
       if (keycode == BP_PERCENT) { // `
-	if ((current_mods & MOD_BIT (KC_LSFT)) || (current_mods & MOD_BIT (KC_RSFT))) {
+       	if ( (current_mods & MOD_BIT (KC_LALT)) || (current_mods & MOD_BIT (KC_LCTRL)) || (current_mods & MOD_BIT (KC_LGUI)) ) { 
+	  register_code(KC_EQL); // 'Modificateurs déjà appuyés' + '=' sur QWERTY
+	}
+	else if ((current_mods & MOD_BIT (KC_LSFT)) || (current_mods & MOD_BIT (KC_RSFT))) {
 	  clear_mods();
 	  tap_code(KC_QUOT); // pas répétable (tenu au clavier)
 	  tap_code(KC_SPC);
