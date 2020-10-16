@@ -63,10 +63,9 @@ plusieurs OS. De plus, notez ces détails:
   fonctionnent pas pour le moment en accès via le modificateur AltGr.
   Par exemple, faire « `AltGr`-`è`, `Shift`-`A` » pour faire un `À` va
   seulement taper la lettre minuscule et sans accent.
-* Bug: AltGauche ou CtrlGauche avec les chiffres ne fonctionne pas- ni
-  directement, ni via le modificateur Shift. Workaround dans le layer
-  Function pour l'instant, mais trouver comment passer les
-  mods+chiffres dans le layer principal.
+* Bug (fixed, CapsLock remapped): Les combinaisons `Shift+FKeys` (ex:
+  `Shift+F1`) ne marche pas actuellement, car Caps Lock est attribué à
+  Fn+Shift.
 * Dû à la dispositon physique de clavier Redox, il me manquait en fait
   les touches à droite pour les lettres `z` et `w` sur la première
   rangée. Je les ai donc mis sur les touches doubles dans le milieu du
@@ -267,7 +266,7 @@ au besoin.)
 
 ```
 // utiliser cette ligne pour une config gaucher (câble USB à gauche)
-#define MASTER_LEFT
+// #define MASTER_LEFT
 
 // **OU** (ne pas définir les deux)
 

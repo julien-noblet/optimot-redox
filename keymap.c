@@ -269,15 +269,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
     
       if (keycode == BP_1) {
-	if ((current_mods & MOD_BIT (KC_LALT))) { // TODO: monter Alt+Chiffres du haut du clavier si Alt appuyé 
-	  clear_mods(); // 'Alt+1'
-	  register_code(KC_LALT);	  
-	  register_code(KC_1);	  
+	if ( (current_mods & MOD_BIT (KC_LALT)) || (current_mods & MOD_BIT (KC_LCTRL)) || (current_mods & MOD_BIT (KC_LGUI)) ) { 
+	  register_code(KC_1); // 'Modificateurs déjà appuyés' + '1' 
 	}
-	//if ((current_mods & MOD_BIT (KC_RALT))) {
-	  // undefined a voir plus tard
-	//}      
-	if ((current_mods & MOD_BIT (KC_LSFT)) || (current_mods & MOD_BIT (KC_RSFT))) {
+	else if ((current_mods & MOD_BIT (KC_LSFT)) || (current_mods & MOD_BIT (KC_RSFT))) {
 	  clear_mods(); // '1'
 	  register_code(KC_1);
 	}      
@@ -290,7 +285,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       } 
 
       if (keycode == BP_2) {
-	if ((current_mods & MOD_BIT (KC_RALT))) {
+	if ( (current_mods & MOD_BIT (KC_LALT)) || (current_mods & MOD_BIT (KC_LCTRL)) || (current_mods & MOD_BIT (KC_LGUI)) ) { 
+	  register_code(KC_2); // 'Modificateurs déjà appuyés' + '2' 
+	}
+	else if ((current_mods & MOD_BIT (KC_RALT))) {
 	  clear_mods();
 	  register_code(KC_BSLS);
 	}      
@@ -306,7 +304,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       } 
 
       if (keycode == BP_3) {
-	if ((current_mods & MOD_BIT (KC_RALT))) { // '>'
+       	if ( (current_mods & MOD_BIT (KC_LALT)) || (current_mods & MOD_BIT (KC_LCTRL)) || (current_mods & MOD_BIT (KC_LGUI)) ) {
+	  register_code(KC_3); // 'Modificateurs déjà appuyés' + '3' 
+	}
+	else if ((current_mods & MOD_BIT (KC_RALT))) { // '>'
 	  clear_mods();
 	  register_code(KC_LSFT);
 	  register_code(KC_BSLS);
@@ -325,7 +326,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       } 
 
       if (keycode == BP_4) {
-	if ((current_mods & MOD_BIT (KC_RALT))) {
+	if ( (current_mods & MOD_BIT (KC_LALT)) || (current_mods & MOD_BIT (KC_LCTRL)) || (current_mods & MOD_BIT (KC_LGUI)) ) { 
+	  register_code(KC_4); // 'Modificateurs déjà appuyés' + '4' 
+	}
+	else if ((current_mods & MOD_BIT (KC_RALT))) {
 	  clear_mods(); // [
 	  register_code(KC_RALT);
 	  register_code(KC_LBRC);
@@ -344,7 +348,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
 
       if (keycode == BP_5) {
-	if ((current_mods & MOD_BIT (KC_RALT))) {
+       	if ( (current_mods & MOD_BIT (KC_LALT)) || (current_mods & MOD_BIT (KC_LCTRL)) || (current_mods & MOD_BIT (KC_LGUI)) ) {
+	  register_code(KC_5); // 'Modificateurs déjà appuyés' + '5'
+	}
+	else if ((current_mods & MOD_BIT (KC_RALT))) {
 	  clear_mods(); // ]
 	  register_code(KC_RALT);
 	  register_code(KC_RBRC);
@@ -363,7 +370,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
 
       if (keycode == BP_6) {
-	if ((current_mods & MOD_BIT (KC_RALT))) {
+	if ( (current_mods & MOD_BIT (KC_LALT)) || (current_mods & MOD_BIT (KC_LCTRL)) || (current_mods & MOD_BIT (KC_LGUI)) ) { 
+	  register_code(KC_6); // 'Modificateurs déjà appuyés' + '6'
+	}
+	else if ((current_mods & MOD_BIT (KC_RALT))) {
 	  clear_mods(); // ^
 	  //ne pourra pas être "tenue" pour répétition
 	  tap_code(KC_LBRC);
@@ -383,7 +393,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
 
       if (keycode == BP_7) { 
-	if ((current_mods & MOD_BIT (KC_RALT))) {
+	if ( (current_mods & MOD_BIT (KC_LALT)) || (current_mods & MOD_BIT (KC_LCTRL)) || (current_mods & MOD_BIT (KC_LGUI)) ) { 
+	  register_code(KC_7); // 'Modificateurs déjà appuyés' + '7'
+	}
+	else if ((current_mods & MOD_BIT (KC_RALT))) {
 	  // SEND_STRING("±"); // TODO a trouver
 	}      
 	else if ((current_mods & MOD_BIT (KC_LSFT)) || (current_mods & MOD_BIT (KC_RSFT))) {
@@ -399,7 +412,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
 
       if (keycode == BP_8) {
-	if ((current_mods & MOD_BIT (KC_LSFT)) || (current_mods & MOD_BIT (KC_RSFT))) {
+	if ( (current_mods & MOD_BIT (KC_LALT)) || (current_mods & MOD_BIT (KC_LCTRL)) || (current_mods & MOD_BIT (KC_LGUI)) ) { 
+	  register_code(KC_8); // 'Modificateurs déjà appuyés' + '8'
+	}
+	else if ((current_mods & MOD_BIT (KC_LSFT)) || (current_mods & MOD_BIT (KC_RSFT))) {
 	  clear_mods(); // 8
 	  register_code(KC_8);	  
 	}      
@@ -411,7 +427,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
 
       if (keycode == BP_9) {
-	if ((current_mods & MOD_BIT (KC_LSFT)) || (current_mods & MOD_BIT (KC_RSFT))) {
+	if ( (current_mods & MOD_BIT (KC_LALT)) || (current_mods & MOD_BIT (KC_LCTRL)) || (current_mods & MOD_BIT (KC_LGUI)) ) { 
+	  register_code(KC_9); // 'Modificateurs déjà appuyés' + '9'
+	}
+	else if ((current_mods & MOD_BIT (KC_LSFT)) || (current_mods & MOD_BIT (KC_RSFT))) {
 	  clear_mods(); // 9
 	  register_code(KC_9);
 	}      
@@ -424,7 +443,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
 
       if (keycode == BP_0) {
-	if ((current_mods & MOD_BIT (KC_LSFT)) || (current_mods & MOD_BIT (KC_RSFT))) {
+	if ( (current_mods & MOD_BIT (KC_LALT)) || (current_mods & MOD_BIT (KC_LCTRL)) || (current_mods & MOD_BIT (KC_LGUI)) ) { 
+	  register_code(KC_0); // 'Modificateurs déjà appuyés' + '0'
+	}
+	else if ((current_mods & MOD_BIT (KC_LSFT)) || (current_mods & MOD_BIT (KC_RSFT))) {
 	  clear_mods(); // 0
 	  register_code(KC_0);
 	}      
@@ -840,9 +862,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐                         ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      RGB_TOG, RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, RGB_SPI,   KC_F6,                             KC_F7,   KC_P7,    KC_P8,  KC_P9,  KC_PMNS, KC_PAST,KC_PSLS,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_BSPC, RGB_RMOD,RGB_HUD, RGB_SAD, RGB_VAD, RGB_SPD,   KC_NO,                             KC_NO,   KC_P4,   KC_P5,   KC_P6,  KC_PPLS, KC_PSLS, KC_PENT,
+     KC_CAPS, RGB_RMOD,RGB_HUD, RGB_SAD, RGB_VAD, RGB_SPD,   KC_NO,                             KC_NO,   KC_P4,   KC_P5,   KC_P6,  KC_PPLS, KC_PSLS, KC_PENT,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_CAPS, RGB_M_P, RGB_M_B, RGB_M_R, RGB_M_K, RGB_M_G,   KC_NO,   KC_NO,           KC_NO,   KC_NO,   KC_P1,   KC_P2,   KC_P3,  KC_PPLS, KC_PAST,  KC_NO,
+     KC_LSFT, RGB_M_P, RGB_M_B, RGB_M_R, RGB_M_K, RGB_M_G,   KC_NO,   KC_NO,           KC_NO,   KC_NO,   KC_P1,   KC_P2,   KC_P3,  KC_PPLS, KC_PAST, KC_RSFT,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤   
      KC_LCTL, KC_TRNS, KC_LGUI, KC_LALT,       KC_NO,       KC_NO,   KC_NO,           KC_NO,   KC_ENT,      KC_P0,       KC_PDOT,  KC_ENT,  KC_NO,   RESET
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
