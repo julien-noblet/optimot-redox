@@ -10,7 +10,7 @@
 #define _BEPO 0
 #define _QWERTY 1
 #define _FN 2
-#define _FKEYS 3
+#define _NATIVE 3
 #define _MOVE 4
 #define _BEPOALTGRGRAVE 5
 #define _BEPOALTGRACUTE 6
@@ -509,7 +509,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     
       if (keycode == BP_EACUTE) {
 	if ((current_mods & MOD_BIT (KC_RALT))) {
-	  layer_move(_BEPOALTGRACUTE);
+	  //layer_move(_BEPOALTGRACUTE);
+	  layer_on(_BEPOALTGRACUTE);
 	}
 	else {
 	  register_code(KC_SLSH);
@@ -539,7 +540,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
       if (keycode == BP_EGRAVE) {
 	if ((current_mods & MOD_BIT (KC_RALT))) {
-	  layer_move(_BEPOALTGRGRAVE);
+	  //layer_move(_BEPOALTGRGRAVE);
+	  layer_on(_BEPOALTGRGRAVE);
 	}
 	else {
 	  tap_code(KC_QUOT);
@@ -553,7 +555,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	  register_code(KC_LSFT);
 	  register_code(KC_1);
 	} else {
-	  layer_move(_BEPOALTGRCIRC);
+	  //layer_move(_BEPOALTGRCIRC);
+	  layer_on(_BEPOALTGRCIRC);
 	}
 	return false;
       }
@@ -834,7 +837,7 @@ void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	// layer de base en bépo. permet de passer en QWERTY avec la touche à l'extrème droite en bas.
-        [_BEPO] = LAYOUT(
+        [_BEPO] = LAYOUT( //layer type: base
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                                           ┌────────┬────────┬────────┬────────┬────────┬────────┐
       BP_POUND, BP_1,    BP_2,    BP_3,    BP_4,   BP_5,                                                BP_8,    BP_9,    BP_0,   BP_EQUAL,BP_PERCENT,KC_BSPC,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐                         ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
@@ -844,11 +847,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
       KC_LSFT, BP_AGRV, BP_Y,     BP_X,   BP_DOT,   BP_K,    BP_8,    BP_9,           KC_NO,  KC_NO,    BP_APOS, BP_Q,    BP_G,    BP_H,    BP_F,   KC_RSFT,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤
-      KC_LCTL, MO(_FN),KC_LGUI, LALT_T(KC_ESC),MO(_MOVE),   BP_SPC,  KC_TAB,          KC_RALT, KC_ENT,      KC_RALT,      KC_Z,    KC_NO, TG(_FKEYS),TO(_QWERTY)
+      KC_LCTL, MO(_FN),KC_LGUI, LALT_T(KC_ESC),MO(_MOVE),   BP_SPC,  KC_TAB,          KC_RALT, KC_ENT,      KC_RALT,      KC_Z,    KC_NO, TG(_NATIVE),TO(_QWERTY)
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
 			 ),
 	// layer QWERTY pour compatibilité.
-        [_QWERTY] = LAYOUT(
+        [_QWERTY] = LAYOUT( //layer type: base
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                                           ┌────────┬────────┬────────┬────────┬────────┬────────┐	
       KC_GRV,   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                                KC_8,    KC_9,    KC_0,   KC_MINS, KC_EQL,  KC_BSPC,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐                         ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
@@ -862,7 +865,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
 			   ), 
 	// touches de fonctions (F keys dans le haut, numpad côté droit du clavier)
-        [_FN] = LAYOUT(
+        [_FN] = LAYOUT( //layer type: hold
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                                           ┌────────┬────────┬────────┬────────┬────────┬────────┐
       KC_ESC,   KC_F1,   KC_F2,  KC_F3,    KC_F4,   KC_F5,                                              KC_F8,    KC_F9,  KC_F10,  KC_F11,  KC_F12, KC_NLCK,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐                         ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
@@ -877,22 +880,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		     ),
 	// il semble que mes manipulations avec BP_chiffres etc ne joue pas bien avec certains raccourcis tels que les alt+shift+1 dans i3 sous Linux.
 	// ce layer est essentiellement mon "failsafe default" si les raccourcis avancés ne marchent pas, qui lance les touches "nativement"
-        [_FKEYS] = LAYOUT(
+        [_NATIVE] = LAYOUT( //layer type: toggle
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                                           ┌────────┬────────┬────────┬────────┬────────┬────────┐
-      KC_NO,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                                KC_6,    KC_7,    KC_8,   KC_9,     KC_0,    KC_NO,
+      KC_NO,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                                KC_6,    KC_7,    KC_8,   KC_9,    KC_0,    KC_NO,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐                         ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
       KC_NO,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_NO,                             KC_NO,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_NO,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   TG(_FKEYS), KC_F11,  KC_F12,  KC_NO,   KC_NO,   KC_NO,   KC_NO,                             KC_NO,  KC_LEFT, KC_DOWN,  KC_UP,   KC_RGHT,   KC_NO,   KC_NO,
+   TG(_NATIVE), KC_F11,  KC_F12,  KC_NO,   KC_NO,   KC_NO,  KC_NO,                             KC_NO,  KC_LEFT, KC_DOWN,  KC_UP,   KC_RGHT, KC_NO,   KC_NO,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_LSFT,  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  TG(_FKEYS),KC_NO,          KC_NO, TG(_FKEYS),KC_HOME,KC_PGDN, KC_PGUP,  KC_END,   KC_NO,   KC_NO,
+     KC_LSFT,  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_NO,            KC_NO,   KC_NO,  KC_HOME,KC_PGDN, KC_PGUP,  KC_END,   KC_NO,   KC_NO,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤   
-     KC_LCTL, KC_TRNS, KC_LGUI, KC_LALT,     MO(_MOVE),     KC_NO,   KC_NO,           KC_NO,   KC_NO,       KC_NO,        KC_NO,  KC_NO,    KC_NO, TG(_FKEYS)
+     KC_LCTL, KC_TRNS, KC_LGUI, KC_LALT,     MO(_MOVE),     KC_NO,   KC_NO,           KC_NO,   KC_NO,       KC_NO,        KC_NO,  KC_NO,  TG(_NATIVE),TG(_NATIVE)
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
 		     ),
 	// layer de mouvement
 	// alt+f4 sur MOVE+É, pour imiter un Ctrl+W
-        [_MOVE] = LAYOUT(
+        [_MOVE] = LAYOUT( //layer type: hold
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                                           ┌────────┬────────┬────────┬────────┬────────┬────────┐	
      KC_ACL0,  KC_ACL1, KC_ACL2, KC_NO,  KC_PSCR, KC_PAUS,                                             KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R,  KC_BTN3, KC_SLCK,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐                         ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
@@ -905,45 +908,45 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_LCTL,  KC_NO,   KC_LGUI, KC_LALT,      KC_TRNS,      KC_NO, KC_MUTE,          KC_INS, KC_DEL,        KC_NO,       KC_NO,   KC_NO,   KC_NO,  TG(_QWERTY)
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
 			     ), 
-        [_BEPOALTGRGRAVE] = LAYOUT(
+        [_BEPOALTGRGRAVE] = LAYOUT(//layer type: dead key
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                                           ┌────────┬────────┬────────┬────────┬────────┬────────┐
       KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                               KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐                         ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
       KC_NO,   KC_NO,   KC_NO,   KC_NO,   BP_O,  BP_EGRAVE, KC_NO,                             KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-      BP_BSPC, BP_A,    BP_U,    BP_I,    BP_E,    KC_NO,   KC_NO,                             KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+    TO(_BEPO), BP_A,    BP_U,    BP_I,    BP_E,    KC_NO,   KC_NO,                             KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
       KC_LSFT,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,           KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_RSFT,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤
-      KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO,       BP_SPC,  KC_NO,           KC_NO,   KC_NO,       KC_NO,         KC_NO,  KC_NO,   KC_NO,   DF(_BEPO)
+      KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO,       BP_SPC,  KC_NO,           KC_NO,   KC_NO,       KC_NO,         KC_NO,  KC_NO,   KC_NO,  TO(_BEPO)
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
 			 ),
 
-        [_BEPOALTGRACUTE] = LAYOUT(
+        [_BEPOALTGRACUTE] = LAYOUT( //layer type: dead key
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                                           ┌────────┬────────┬────────┬────────┬────────┬────────┐
       KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                               KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐                         ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
       KC_NO,   KC_NO,  BP_EACUTE,KC_NO,   BP_O,    KC_NO,   KC_NO,                             KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-      BP_BSPC, BP_A,    BP_U,    BP_I,    BP_E,    KC_NO,   KC_NO,                             KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+    TO(_BEPO), BP_A,   BP_U,    BP_I,    BP_E,    KC_NO,   KC_NO,                             KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
       KC_LSFT, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,           KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_RSFT,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤
-      KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO,       BP_SPC,  KC_NO,           KC_NO,   KC_NO,       KC_NO,         KC_NO,  KC_NO,   KC_NO,   DF(_BEPO)
+      KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO,       BP_SPC,  KC_NO,           KC_NO,   KC_NO,       KC_NO,         KC_NO,  KC_NO,   KC_NO,  TO(_BEPO)
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
 			 ),
 
-        [_BEPOALTGRCIRC] = LAYOUT(
+        [_BEPOALTGRCIRC] = LAYOUT( //layer type: dead key
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                                           ┌────────┬────────┬────────┬────────┬────────┬────────┐
       KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                               KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐                         ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
       KC_NO,   KC_NO,   KC_NO,   KC_NO,   BP_O,    KC_NO,  BP_CIRC,                            KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-      BP_BSPC, BP_A,    BP_U,    BP_I,    BP_E,    KC_NO,   KC_NO,                             KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+    TO(_BEPO), BP_A,    BP_U,    BP_I,    BP_E,    KC_NO,   KC_NO,                             KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
       KC_LSFT, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,           KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_RSFT,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤
-      KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO,       BP_SPC,  KC_NO,           KC_NO,   KC_NO,       KC_NO,         KC_NO,  KC_NO,   KC_NO,   DF(_BEPO)
+      KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO,       BP_SPC,  KC_NO,           KC_NO,   KC_NO,       KC_NO,         KC_NO,  KC_NO,   KC_NO,  TO(_BEPO)
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
 			 ),	
 };
@@ -952,7 +955,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #ifdef RGBLIGHT_ENABLE
 // Section RGB, complètement rippé des exampdes de la docu qmk:
-//     https://docs.qmk.fm/#/feature_rgblight
+//     https://docs.qmk.fm/#/feature_rgblight 
 
 // TODO: Faire marcher en tant que right master. actuellement ne
 // marche pas et on DOIT flasher les deux bords pour réfléter les

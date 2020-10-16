@@ -1,13 +1,48 @@
-# Redox avec Bépo via la dispositon Canadien Français
+# Disopsition Bépo sur clavier Redox (Canadien Français)
+
+## Layers
+
+### Bépo
 
 ![Résumé des différentes fonctions du Redox
-Bépo](keyboard-layout-main.png) 
+Bépo](./images/keyboard-layout-main.png) 
 
-(Note: ceci ne montre que les touches
-les plus utilisés - les couches (marqués par des touches de couleur)
-sont un peu plus garnies en fonctionnalité)
+Résumé en un clin d'oeil des autres couches - voir images suivantes
+pour les détails de chaque layer
 
---
+### Mouvement
+
+![Layer Mouvement](./images/keyboard-layout-move.png) 
+
+### Fonctions
+
+![Layer Function](./images/keyboard-layout-fn.png) 
+
+### Touches Natives (en cas de pépins avec le layer Bépo)
+
+![Layer Natif](./images/keyboard-layout-native.png) 
+
+
+### AltGr
+
+![Layer AltGr](./images/keyboard-layout-altgr.png) 
+
+
+### AltGr Grave (touche morte)
+
+![Layer Grave](./images/keyboard-layout-altgr-grave.png) 
+
+
+### AltGr Aigu (touche morte)
+
+![Layer Aigu](./images/keyboard-layout-altgr-acute.png) 
+
+### AltGr Circonflexe (touche morte)
+
+![Layer Circonflexe](./images/keyboard-layout-altgr-circ.png) 
+
+
+## Détails
 
 Ce projet contient un layout pour le [Clavier
 Redox](https://github.com/mattdibi/redox-keyboard) ayant une
@@ -63,9 +98,9 @@ plusieurs OS. De plus, notez ces détails:
   fonctionnent pas pour le moment en accès via le modificateur AltGr.
   Par exemple, faire « `AltGr`-`è`, `Shift`-`A` » pour faire un `À` va
   seulement taper la lettre minuscule et sans accent.~~
-* Bug (fixed, CapsLock remapped): Les combinaisons `Shift+FKeys` (ex:
+* ~~Bug (fixed, CapsLock remapped): Les combinaisons `Shift+FKeys` (ex:
   `Shift+F1`) ne marche pas actuellement, car Caps Lock est attribué à
-  Fn+Shift.
+  Fn+Shift.~~
 * Dû à la dispositon physique de clavier Redox, il me manquait en fait
   les touches à droite pour les lettres `z` et `w` sur la première
   rangée. Je les ai donc mis sur les touches doubles dans le milieu du
