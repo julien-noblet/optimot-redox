@@ -60,13 +60,20 @@ Pourquoi?
 
 ![Layer Mouvement](./images/keyboard-layout-move.png) 
 
+Les touches de la main droite ont été inspirés par le positionnement `H-J-K-L` de l'éditeur Vi/Vim, quoique pas exclusif à Vi (ex: Gmail, Youtube, DuckDuckGo, ...)
+
 ### Fonctions
 
 ![Layer Function](./images/keyboard-layout-fn.png) 
 
-Le mode reset met le clavier en mode programmation, prêt pour flasher
-un nouveau firmware. Ceci est l'équivalent à appuyer sur le bouton au
-dos du clavier.
+* Le mode reset met le clavier en mode programmation, prêt pour
+  flasher un nouveau firmware. Ceci est l'équivalent à appuyer sur le
+  bouton au dos du clavier.
+* Les touches RGB du côté gauche ne fonctionne seulement que si on
+  branche le câble USB à gauche. Il existe une limitation dans la
+  façon que les composantes ont été connectés ensemble qui fait en
+  sorte que le RGB répond aux commandes seulement lorsque connecté à
+  gauche.
 
 ### Touches Natives (en cas de pépins avec le layer Bépo)
 
@@ -112,13 +119,6 @@ l'alphabet de base sous Bépo mais pas toutes les couches, car une
 bonne partie ne fonctionnerait pas de manière /cross-platform/ entre
 plusieurs OS. De plus, notez ces détails:
 
-* ~~Bug majeur (fixed?): Les accents graves et aigus en majuscule ne
-  fonctionnent pas pour le moment en accès via le modificateur AltGr.
-  Par exemple, faire « `AltGr`-`è`, `Shift`-`A` » pour faire un `À` va
-  seulement taper la lettre minuscule et sans accent.~~
-* ~~Bug (fixed, CapsLock remapped): Les combinaisons `Shift+FKeys` (ex:
-  `Shift+F1`) ne marche pas actuellement, car Caps Lock est attribué à
-  Fn+Shift.~~
 * Seulement les touches les plus communes, accessibles depuis le
   clavier Canadien Français, ont été transcris sur ce keymap. Ce n'est
   pas une solution "complète" ayant absolument tous les caractères
@@ -130,13 +130,6 @@ plusieurs OS. De plus, notez ces détails:
   à l'origine. Eh bien dans mon cas j'ai assez vite ré-appris avec ces
   emplacements non-officiel, ce qui en fait que je l'ai publié dans le
   projet tel-quel.
-  * À noter que des touches non attribués existe à la suite du AltGr à
-    droite; il ne serait pas impossible d'attribuer ces lettres mal
-    placés à ces touches. Je laisse le soin « au prochain » de tester
-    et voir si ça fait du sens. Dans mon cas, en double apprentissage
-    Bépo et Redox à la fois, rajouter une autre rangée de lettres
-    semblait pas du tout naturel à mes pauvres doigts qui en arrachait
-    assez déjà :)
 * J'ai personnalisé la série de touches `à`-`y`-`x`-`.`-`k` pour
   l'accès avec le modifieur `AltGr`, pour cette série non standard:
   `\`-`{`-`|`-`}`-`~`
