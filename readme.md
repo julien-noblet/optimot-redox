@@ -3,8 +3,9 @@
 ![Résumé des différentes fonctions du Redox
 Bépo](./images/keyboard-layout-main.png) 
 
-Résumé en un clin d'oeil des autres couches - voir images suivantes
-pour les détails de chaque layer
+Résumé en un clin d'oeil des fonctions courantes et du layer
+principal - voir images dans les sections suivantes pour les détails
+de chaque layer
 
 
 ## Détails
@@ -118,6 +119,10 @@ plusieurs OS. De plus, notez ces détails:
 * ~~Bug (fixed, CapsLock remapped): Les combinaisons `Shift+FKeys` (ex:
   `Shift+F1`) ne marche pas actuellement, car Caps Lock est attribué à
   Fn+Shift.~~
+* Seulement les touches les plus communes, accessibles depuis le
+  clavier Canadien Français, ont été transcris sur ce keymap. Ce n'est
+  pas une solution "complète" ayant absolument tous les caractères
+  inimaginables et obscures de Bépo :)
 * Dû à la dispositon physique de clavier Redox, il me manquait en fait
   les touches à droite pour les lettres `z` et `w` sur la première
   rangée. Je les ai donc mis sur les touches doubles dans le milieu du

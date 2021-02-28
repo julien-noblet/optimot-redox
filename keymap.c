@@ -847,7 +847,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
       KC_LSFT, BP_AGRV, BP_Y,     BP_X,   BP_DOT,   BP_K,    BP_8,    BP_9,           KC_NO,  KC_NO,    BP_APOS, BP_Q,    BP_G,    BP_H,    BP_F,   KC_RSFT,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤
-      KC_LCTL, MO(_FN),KC_LGUI, LALT_T(KC_ESC),MO(_MOVE),   BP_SPC,  KC_TAB,          KC_RALT, KC_ENT,      KC_RALT,      KC_Z,    KC_NO, TG(_NATIVE),TO(_QWERTY)
+      KC_LCTL, MO(_FN),KC_LGUI, LALT_T(KC_ESC),MO(_MOVE),   BP_SPC,  KC_TAB,          KC_RALT, KC_ENT,      KC_RALT,      KC_APP, KC_RCTL, TG(_NATIVE),TO(_QWERTY)
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
 			 ),
 	// layer QWERTY pour compatibilité.
@@ -861,7 +861,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
       KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   KC_NO,   KC_NO,           KC_NO,   KC_NO,    KC_N,   KC_M,   KC_COMM,  KC_DOT,  KC_SLSH, KC_RSFT,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤   
-      KC_LCTL, MO(_FN), KC_LGUI,LALT_T(KC_ESC),TT(_MOVE),   KC_SPC,  KC_TAB,          KC_RALT, KC_ENT,     KC_RALT,       KC_NO,   KC_NO,   KC_NO,  TO(_BEPO)
+      KC_LCTL, MO(_FN), KC_LGUI,LALT_T(KC_ESC),TT(_MOVE),   KC_SPC,  KC_TAB,          KC_RALT, KC_ENT,     KC_RALT,       KC_APP, KC_RCTL,  KC_NO,  TO(_BEPO)
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
 			   ), 
 	// touches de fonctions (F keys dans le haut, numpad côté droit du clavier)
