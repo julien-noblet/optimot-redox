@@ -153,6 +153,18 @@ plusieurs OS. De plus, notez ces détails:
 	mes flèches du clavier. Voir les attribution de touches marqués en
 	rouge sur la main droite dans l'image résumé du début du readme.
 
+### Bugs connus
+* À vérifier: quelquefois, le `@` et certaines autres touches de la
+  série AltGr+[chiffre] en Canadien Français ne se fait plus. Ça peut
+  être mon setup au travail entre Windows 10 et mRemoteNG qui
+  cause un trouble non relié au clavier.
+* Bug (correctif en cours de test): Relâcher plusieurs touches fait
+  relâcher toutes les keypress en cours sous les layers non-QWERTY
+  (Bépo, Mouvements). Ceci engendre un problème en gaming lorsqu'on
+  déplace un personnage sur deux axes à la fois avec les flèches (ex:
+  taper sur haut+gauche en même temps et relâcher une des flèches fait
+  relâcher les DEUX boutons). 
+
 ## Installation
 Quoique pas un guide officiel, je vais présumer qu'il y a possibilité
 que des gens débute avec le Redox (ou QMK en général) et cherche à

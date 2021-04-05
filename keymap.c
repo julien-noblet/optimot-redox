@@ -3,6 +3,8 @@
 #include <print.h> //pour déboguage
 #endif
 
+#include <keymap_french_canadian.h>
+
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
@@ -16,13 +18,11 @@
 #define _BEPOALTGRACUTE 6
 #define _BEPOALTGRCIRC 7
 
+#define WS_PREV   LCTL(LGUI(KC_LEFT))  //Next Workspace (Windows 10)
+#define WS_NEXT   LCTL(LGUI(KC_RIGHT)) //Previous Workspace
+
 enum custom_keycodes {
-		      BP_SPC = SAFE_RANGE,BP_BSPC,
-		      // Bepo Keyboard layout:
-		      BP_POUND, BP_1, BP_2, BP_3, BP_4, BP_5, BP_6, BP_7, BP_8, BP_9, BP_0, BP_EQUAL, BP_PERCENT,
-		      BP_B, BP_EACUTE, BP_P, BP_O, BP_EGRAVE, BP_CIRC, BP_V, BP_D, BP_L, BP_J, BP_Z, BP_W,	     
-		      BP_A, BP_U, BP_I, BP_E, BP_COMMA, BP_C, BP_T, BP_S, BP_R, BP_N, BP_M, BP_CCED,
-		      BP_AGRV, BP_Y, BP_X, BP_DOT, BP_K, BP_APOS, BP_Q, BP_G, BP_H, BP_F
+  BP_CCED = SAFE_RANGE, BP_AGRV
 };
 
 
@@ -30,11 +30,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   // fonction principal de traitement des keypresses
   // returns false si le keypress ne demande pas de traitement supplémentaire par QMK, true si le keypress n'est pas traité ici.
 
-  // TODO: 
-  // - Bug majeur (fixed): les combinaisons AltGr+è U majuscule pour faire Ù ne fonctionne pas « all across the board »: on ne voit que la lettre de base et en minuscule, pas d'accent
-  // - Linux i3 Alt(+Shift en bépo)+chiffre ne fonctionne pas. Même avec les fixes de event.release. rajouté un layer "natif" pour compenser.
-  // - Avoir PouceDroit faire Enter et Move+PouceDroit faire la touche Delete est une recette pour des désastres; changer! Suggestion: mettre insert et delete sur les petites touches juste au-toutes
-  // - des fois, le arobas (A commercial) ne passe pas, il semble être bloqué au niveau du OS à la job... ça devient chiant d'écrire des courriels quand ça arrive!
+  // TODO:
+  // Documentation en image: rajouter le shortcut Ctrl+Gui+Left/Right pour le basculement des écrans virtuels sous Windows 10.
 
 
 #ifdef CONSOLE_ENABLE
@@ -53,7 +50,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       //shift uniquement = laisser QMK traiter le keypress
       if (keycode == KC_LSFT || keycode == KC_RSFT) return true;
       
-      if (keycode == BP_A) {
+      if (keycode == CF_A) {
 	tap_code(KC_QUOT);
 	if (shifted) register_code(KC_LSFT);
 	tap_code(KC_A);
@@ -62,7 +59,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;
       }
       
-      if (keycode == BP_U) {
+      if (keycode == CF_U) {
 	tap_code(KC_QUOT);
 	if (shifted) register_code(KC_LSFT);
 	tap_code(KC_U);
@@ -70,7 +67,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	layer_move(_BEPO);
 	return false;
       }    
-      if (keycode == BP_I) {
+      if (keycode == CF_I) {
 	tap_code(KC_QUOT);
 	if (shifted) register_code(KC_LSFT);
 	tap_code(KC_I);
@@ -78,7 +75,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	layer_move(_BEPO);
 	return false;
       }    
-      if (keycode == BP_E) {
+      if (keycode == CF_E) {
 	tap_code(KC_QUOT);
 	if (shifted) register_code(KC_LSFT);
 	tap_code(KC_E);
@@ -86,7 +83,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	layer_move(_BEPO);
 	return false;
       }    
-      if (keycode == BP_O) {
+      if (keycode == CF_O) {
 	tap_code(KC_QUOT);
 	if (shifted) register_code(KC_LSFT);
 	tap_code(KC_O);
@@ -94,7 +91,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	layer_move(_BEPO);
 	return false;
       }
-      if (keycode == BP_SPC || keycode == BP_EGRAVE) {
+      if (keycode == KC_SPC || keycode == CF_EGRV) {
 	tap_code(KC_QUOT);
 	tap_code(KC_SPC);
 	layer_move(_BEPO);
@@ -114,7 +111,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       //shift uniquement = laisser QMK traiter le keypress
       if (keycode == KC_LSFT || keycode == KC_RSFT) return true;
       
-      if (keycode == BP_A) {
+      if (keycode == CF_A) {
 	register_code(KC_RALT);
 	tap_code(KC_SLSH);
 	unregister_code(KC_RALT);
@@ -125,7 +122,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	layer_move(_BEPO);
 	return false;
       }    
-      if (keycode == BP_U) {
+      if (keycode == CF_U) {
 	register_code(KC_RALT);
 	tap_code(KC_SLSH);
 	unregister_code(KC_RALT);
@@ -136,7 +133,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	layer_move(_BEPO);
 	return false;
       }    
-      if (keycode == BP_I) {
+      if (keycode == CF_I) {
 	register_code(KC_RALT);
 	tap_code(KC_SLSH);
 	unregister_code(KC_RALT);
@@ -147,14 +144,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	layer_move(_BEPO);
 	return false;
       }    
-      if (keycode == BP_E) {
+      if (keycode == CF_E) {
 	if (shifted) { register_code(KC_LSFT); } 
 	tap_code(KC_SLASH);
 	clear_mods();
 	layer_move(_BEPO);
 	return false;
       }    
-      if (keycode == BP_O) {
+      if (keycode == CF_O) {
 	register_code(KC_RALT);
 	tap_code(KC_SLSH);
 	unregister_code(KC_RALT);
@@ -165,7 +162,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	layer_move(_BEPO);
 	return false;
       }
-      if (keycode == BP_SPC || keycode == BP_EACUTE) {
+      if (keycode == KC_SPC || keycode == CF_EACU) {
 	register_code(KC_RALT); 
 	tap_code(KC_SLSH);
 	unregister_code(KC_RALT);
@@ -173,7 +170,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	layer_move(_BEPO);
 	return false;
       }
-      //if (keycode == BP_BSPC) { layer_move(_BEPO); return false; }
+      //if (keycode == CF_BSPC) { layer_move(_BEPO); return false; }
       //return true;
 
       // cas par défaut
@@ -189,7 +186,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       //shift uniquement = laisser QMK traiter le keypress
       if (keycode == KC_LSFT || keycode == KC_RSFT) return true;
       
-      if (keycode == BP_A) {
+      if (keycode == CF_A) {
 	tap_code(KC_LBRC);
 	if (shifted) register_code(KC_LSFT);
 	tap_code(KC_A);
@@ -197,7 +194,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	layer_move(_BEPO);
 	return false;
       }    
-      if (keycode == BP_U) {
+      if (keycode == CF_U) {
 	tap_code(KC_LBRC);
 	if (shifted) register_code(KC_LSFT);
 	tap_code(KC_U);
@@ -205,7 +202,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	layer_move(_BEPO);
 	return false;
       }    
-      if (keycode == BP_I) {
+      if (keycode == CF_I) {
 	tap_code(KC_LBRC);
 	if (shifted) register_code(KC_LSFT);
 	tap_code(KC_I);
@@ -213,7 +210,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	layer_move(_BEPO);
 	return false;
       }    
-      if (keycode == BP_E) {
+      if (keycode == CF_E) {
 	tap_code(KC_LBRC);
 	if (shifted) register_code(KC_LSFT);
 	tap_code(KC_E);
@@ -221,7 +218,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	layer_move(_BEPO);
 	return false;
       }    
-      if (keycode == BP_O) {
+      if (keycode == CF_O) {
 	tap_code(KC_LBRC);
 	if (shifted) register_code(KC_LSFT);
 	tap_code(KC_O);
@@ -229,13 +226,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	layer_move(_BEPO);
 	return false;
       }
-      if (keycode == BP_SPC || keycode == BP_CIRC) {
+      if (keycode == KC_SPC || keycode == CF_CIRC) {
 	tap_code(KC_LBRC);
 	tap_code(KC_SPC);
 	layer_move(_BEPO);
 	return false;
       }
-      // if (keycode == BP_BSPC) { layer_move(_BEPO); return false; }    
+      // if (keycode == CF_BSPC) { layer_move(_BEPO); return false; }    
       // return true;
       
       layer_move(_BEPO);
@@ -251,7 +248,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (keycode == KC_LALT || keycode == KC_RALT) return true; 
       if (keycode == KC_LCTRL || keycode == KC_RCTRL) return true; 
       
-      if (keycode == BP_POUND) {
+      if (keycode == CF_HASH) {
 	if ((current_mods & MOD_BIT (KC_RALT))) { // '\'
 	  register_code(KC_RALT);
 	  register_code(KC_GRV); 
@@ -268,7 +265,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;
       }
     
-      if (keycode == BP_1) {
+      if (keycode == CF_1) {
 	if ( (current_mods & MOD_BIT (KC_LALT)) || (current_mods & MOD_BIT (KC_LCTRL)) || (current_mods & MOD_BIT (KC_LGUI)) ) { 
 	  register_code(KC_1); // 'Modificateurs déjà appuyés' + '1' 
 	}
@@ -284,7 +281,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;
       } 
 
-      if (keycode == BP_2) {
+      if (keycode == CF_2) {
 	if ( (current_mods & MOD_BIT (KC_LALT)) || (current_mods & MOD_BIT (KC_LCTRL)) || (current_mods & MOD_BIT (KC_LGUI)) ) { 
 	  register_code(KC_2); // 'Modificateurs déjà appuyés' + '2' 
 	}
@@ -303,7 +300,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;
       } 
 
-      if (keycode == BP_3) {
+      if (keycode == CF_3) {
        	if ( (current_mods & MOD_BIT (KC_LALT)) || (current_mods & MOD_BIT (KC_LCTRL)) || (current_mods & MOD_BIT (KC_LGUI)) ) {
 	  register_code(KC_3); // 'Modificateurs déjà appuyés' + '3' 
 	}
@@ -325,7 +322,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;
       } 
 
-      if (keycode == BP_4) {
+      if (keycode == CF_4) {
 	if ( (current_mods & MOD_BIT (KC_LALT)) || (current_mods & MOD_BIT (KC_LCTRL)) || (current_mods & MOD_BIT (KC_LGUI)) ) { 
 	  register_code(KC_4); // 'Modificateurs déjà appuyés' + '4' 
 	}
@@ -347,7 +344,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;
       }
 
-      if (keycode == BP_5) {
+      if (keycode == CF_5) {
        	if ( (current_mods & MOD_BIT (KC_LALT)) || (current_mods & MOD_BIT (KC_LCTRL)) || (current_mods & MOD_BIT (KC_LGUI)) ) {
 	  register_code(KC_5); // 'Modificateurs déjà appuyés' + '5'
 	}
@@ -369,7 +366,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;
       }
 
-      if (keycode == BP_6) {
+      if (keycode == CF_6) {
 	if ( (current_mods & MOD_BIT (KC_LALT)) || (current_mods & MOD_BIT (KC_LCTRL)) || (current_mods & MOD_BIT (KC_LGUI)) ) { 
 	  register_code(KC_6); // 'Modificateurs déjà appuyés' + '6'
 	}
@@ -392,7 +389,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;
       }
 
-      if (keycode == BP_7) { 
+      if (keycode == CF_7) { 
 	if ( (current_mods & MOD_BIT (KC_LALT)) || (current_mods & MOD_BIT (KC_LCTRL)) || (current_mods & MOD_BIT (KC_LGUI)) ) { 
 	  register_code(KC_7); // 'Modificateurs déjà appuyés' + '7'
 	}
@@ -411,7 +408,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;
       }
 
-      if (keycode == BP_8) {
+      if (keycode == CF_8) {
 	if ( (current_mods & MOD_BIT (KC_LALT)) || (current_mods & MOD_BIT (KC_LCTRL)) || (current_mods & MOD_BIT (KC_LGUI)) ) { 
 	  register_code(KC_8); // 'Modificateurs déjà appuyés' + '8'
 	}
@@ -426,7 +423,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;
       }
 
-      if (keycode == BP_9) {
+      if (keycode == CF_9) {
 	if ( (current_mods & MOD_BIT (KC_LALT)) || (current_mods & MOD_BIT (KC_LCTRL)) || (current_mods & MOD_BIT (KC_LGUI)) ) { 
 	  register_code(KC_9); // 'Modificateurs déjà appuyés' + '9'
 	}
@@ -442,7 +439,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;
       }
 
-      if (keycode == BP_0) {
+      if (keycode == CF_0) {
 	if ( (current_mods & MOD_BIT (KC_LALT)) || (current_mods & MOD_BIT (KC_LCTRL)) || (current_mods & MOD_BIT (KC_LGUI)) ) { 
 	  register_code(KC_0); // 'Modificateurs déjà appuyés' + '0'
 	}
@@ -458,7 +455,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;
       }
 
-      if (keycode == BP_EQUAL) { //
+      if (keycode == CF_EQL) { //
        	if ( (current_mods & MOD_BIT (KC_LALT)) || (current_mods & MOD_BIT (KC_LCTRL)) || (current_mods & MOD_BIT (KC_LGUI)) ) { 
 	  register_code(KC_MINS); // 'Modificateurs déjà appuyés' + '-' sur QWERTY
 	}
@@ -475,7 +472,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;
       }
 
-      if (keycode == BP_PERCENT) { // `
+      if (keycode == CF_PERC) { // `
        	if ( (current_mods & MOD_BIT (KC_LALT)) || (current_mods & MOD_BIT (KC_LCTRL)) || (current_mods & MOD_BIT (KC_LGUI)) ) { 
 	  register_code(KC_EQL); // 'Modificateurs déjà appuyés' + '=' sur QWERTY
 	}
@@ -492,7 +489,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;
       }
 
-      if (keycode == BP_B) {
+      if (keycode == CF_B) {
 	uint8_t temp_mod = get_mods();
 	if ((temp_mod & MOD_BIT (KC_RALT))) {
 	  clear_mods(); //| 
@@ -507,7 +504,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;
       }
     
-      if (keycode == BP_EACUTE) {
+      if (keycode == CF_EACU) {
+	//uprintf("KL: kc: %u, col: %u, row: %u, pressed: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed);
+
 	if ((current_mods & MOD_BIT (KC_RALT))) {
 	  //layer_move(_BEPOALTGRACUTE);
 	  layer_on(_BEPOALTGRACUTE);
@@ -518,7 +517,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;      
       }
 
-      if (keycode == BP_P) {
+      if (keycode == CF_P) {
 	if ((current_mods & MOD_BIT (KC_RALT))) {
 	  clear_mods(); // '&'
 	  register_code(KC_LSFT);
@@ -531,14 +530,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;      
       }
 
-      if (keycode == BP_O) {
+      if (keycode == CF_O) {
 	// TODO: trouver pour le caractere "oe"
 	register_code(KC_O);
 	//tap_code(KC_O);
 	return false;      
       }
 
-      if (keycode == BP_EGRAVE) {
+      if (keycode == CF_EGRV) {
 	if ((current_mods & MOD_BIT (KC_RALT))) {
 	  //layer_move(_BEPOALTGRGRAVE);
 	  layer_on(_BEPOALTGRGRAVE);
@@ -550,7 +549,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;
       }
 
-      if (keycode == BP_CIRC) { //exclamation en shift ou altgr
+      if (keycode == CF_CIRC) { //exclamation en shift ou altgr
 	if ((current_mods & MOD_BIT (KC_LSFT)) || (current_mods & MOD_BIT (KC_RSFT))) {
 	  register_code(KC_LSFT);
 	  register_code(KC_1);
@@ -561,32 +560,32 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;
       }
 
-      if (keycode == BP_V) {
+      if (keycode == CF_V) {
 	register_code(KC_V);
 	return false;      
       }
 
-      if (keycode == BP_D) {
+      if (keycode == CF_D) {
 	register_code(KC_D);
 	return false;      
       }
 
-      if (keycode == BP_L) {
+      if (keycode == CF_L) {
 	register_code(KC_L);
 	return false;      
       }
 
-      if (keycode == BP_J) {
+      if (keycode == CF_J) {
 	register_code(KC_J);
 	return false;      
       }
     
-      if (keycode == BP_Z) {
+      if (keycode == CF_Z) {
 	register_code(KC_Z);
 	return false;      
       }
     
-      if (keycode == BP_W) {
+      if (keycode == CF_W) {
 	register_code(KC_W);
 	return false;      
       }
@@ -603,29 +602,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;      
       }
 
-      if (keycode == BP_A) {
+      if (keycode == CF_A) {
 	// TODO: Trouver pour æ (caractere ae sur AltGr)
 	register_code(KC_A);      
 	return false;      
       }
 
-      if (keycode == BP_U) {
+      if (keycode == CF_U) {
 	register_code(KC_U);
 	return false;      
       }
 
-      if (keycode == BP_I) {
+      if (keycode == CF_I) {
 	register_code(KC_I);
 	return false;      
       }
 
-      if (keycode == BP_E) {
+      if (keycode == CF_E) {
 	// TODO: trouver pour æ (caractere ae)
 	register_code(KC_E);      
 	return false;      
       }
 
-      if (keycode == BP_COMMA) {
+      if (keycode == CF_COMM) {
 	if ((current_mods & MOD_BIT (KC_RALT))) {
 	  clear_mods(); // '
 	  register_code(KC_LSFT);
@@ -641,28 +640,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;      
       }
 
-      if (keycode == BP_C) {
+      if (keycode == CF_C) {
 	// todo: layer cedille?
 	register_code(KC_C);
 	return false;      
       }
 
-      if (keycode == BP_T) {
+      if (keycode == CF_T) {
 	register_code(KC_T);
 	return false;      
       }
     
-      if (keycode == BP_S) {
+      if (keycode == CF_S) {
 	register_code(KC_S);
 	return false;      
       }
 
-      if (keycode == BP_R) {
+      if (keycode == CF_R) {
 	register_code(KC_R);
 	return false;      
       }
 
-      if (keycode == BP_N) {
+      if (keycode == CF_N) {
 	if ((current_mods & MOD_BIT (KC_RALT))) {
 	  clear_mods(); // ~
 	  register_code(KC_RALT);
@@ -675,7 +674,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;      
       } 
 
-      if (keycode == BP_M) {
+      if (keycode == CF_M) {
 	register_code(KC_M);
 	return false;      
       } 
@@ -686,7 +685,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	  register_code(KC_RALT);
 	  register_code(KC_GRV);
 	} else { // à
-	  //todo: actuellement pas répétable
 	  tap_code(KC_QUOT);
 	  tap_code(KC_A);
 	}
@@ -694,7 +692,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;      
       } 
 
-      if (keycode == BP_Y) {
+      if (keycode == CF_Y) {
 	if ((current_mods & MOD_BIT (KC_RALT))) {
 	  clear_mods(); // {
 	  register_code(KC_RALT);
@@ -707,7 +705,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;      
       } 
 
-      if (keycode == BP_X) {
+      if (keycode == CF_X) {
 	if ((current_mods & MOD_BIT (KC_RALT))) {
 	  clear_mods(); //| 
 	  register_code(KC_LSFT);
@@ -720,8 +718,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;      
       } 
 
-      if (keycode == BP_DOT) {
-	// TODO: a été mis à "}", faute de trouver '…' (points de suspension) sur le clavier Canadien Français
+      if (keycode == CF_DOT) {
+	// TODO: a été mis à "}", faute de trouver '…' (points de suspension) nativement sur le clavier Canadien Français
 	if ((current_mods & MOD_BIT (KC_RALT))) {
 	  clear_mods(); // }
 	  register_code(KC_RALT);
@@ -740,7 +738,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;      
       } 
 
-      if (keycode == BP_K) {
+      if (keycode == CF_K) {
 	if ((current_mods & MOD_BIT (KC_RALT))) {
 	  clear_mods(); // ~
 	  register_code(KC_RALT);
@@ -753,7 +751,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;      
       } 
 
-      if (keycode == BP_APOS) {
+      if (keycode == CF_QUOT) {
 	//if ((current_mods & MOD_BIT (KC_RALT))) {
 	//  send_string("¿"); //TODO: Trouver
 	//}
@@ -770,27 +768,27 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return false;  
       } 
 
-      if (keycode == BP_Q) {
+      if (keycode == CF_Q) {
 	register_code(KC_Q);
 	return false;      
       } 
 
-      if (keycode == BP_G) {
+      if (keycode == CF_G) {
 	register_code(KC_G);
 	return false;      
       } 
 
-      if (keycode == BP_H) {
+      if (keycode == CF_H) {
 	register_code(KC_H);
 	return false;      
       }
     
-      if (keycode == BP_F) {
+      if (keycode == CF_F) {
 	register_code(KC_F);
 	return false;      
       }
 
-      if (keycode == BP_SPC) {
+      if (keycode == KC_SPC) {
 	if ((current_mods & MOD_BIT (KC_RALT))) {
 	  clear_mods(); // _
 	  register_code(KC_LSFT);
@@ -807,31 +805,85 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     
     } // fin layer _bepo
  
+  } else { // n'est pas record->event.pressed
+    if (IS_LAYER_ON(_BEPO) && !get_mods()) {
+      //uint8_t current_mods = get_mods();
+      //uprintf("no get_mods, %u, keycode %u\n", current_mods, keycode);
+
+      // pas terrible, mais l'alternative serait d'avoir des
+      // relâchements pour TOUTES les touches appuyés simultanément.
+      // ce block est nécessaire pour permettre un meilleur support
+      // pour le gaming (appuyer/relâcher plus qu'une touche à la
+      // fois de manière indépendante)
+      
+      switch (keycode) {
+      case CF_A:
+      case CF_B:
+      case CF_C:
+      case CF_D:
+      case CF_E:
+      case CF_F:
+      case CF_G:
+      case CF_H:
+      case CF_I:
+      case CF_J:
+      case CF_K:
+      case CF_L:
+      case CF_M:
+      case CF_N:
+      case CF_O:
+      case CF_P:
+      case CF_Q:
+      case CF_R:
+      case CF_S:
+      case CF_T:
+      case CF_U:
+      case CF_V:
+      case CF_W:
+      case CF_X:
+      case CF_Y:
+      case CF_Z:
+      case CF_EACU:
+      case BP_AGRV:
+      case BP_CCED:
+      case KC_UP:
+      case KC_DOWN:
+      case KC_LEFT:
+      case KC_RIGHT:
+	//uprintf("unregistering la key %u seulement\n", keycode);
+	unregister_code(keycode);
+	return false;
+      default:
+	//uprintf("default. kc %u, KC_A=%u, BP_A=%u\n", keycode, KC_A, BP_A);
+	clear_keyboard_but_mods();
+	return false;
+      }
+    }    
   }
-  //uprintf("Uncaught keypress (tombe jusqu'a la fin de la fonction)\n");
+  //uprintf("Uncaught keypress (tombe jusqu'a la fin de la fonction, ne devrait plus arriver)\n");
   return true; 
 };
 
 
 void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
   // function qui est appelée une fois que le keypress a été traité dans process_record_user().
+  // uprintf("KL: kc: %u, col: %u, row: %u, pressed: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed);
 
-  if (IS_LAYER_ON(_BEPO) && !record->event.pressed) {
-    //clear_keyboard(); // bug: reset TOUT.
-    //                     Keybinds emacs avec plusieurs touches Mods successives impossible sans la relâcher.
-    //                     Alt-Tab en cherchant dans les plus vieux apps impossible.
+  // migré dans le dernier block if dans la function process_record_user juste dessus.
+
+  //if (IS_LAYER_ON(_BEPO) && !record->event.pressed) {
+    //clear_keyboard(); // bug: reset TOUT. Keybinds emacs avec
+    //                     plusieurs touches modificateurs (C-x C-s)
+    //                     successives impossible sans la relâcher.
+    //                     Alt-Tab en cherchant dans les plus vieux
+    //                     apps impossible.
     
     //unregister_code(keycode); // bug: touches pressed programatically restent collés,
     //                                  génère des input en trop. doit les clairer ici en code.
-
-    clear_keyboard_but_mods(); // en cours de test, semble prometteur
-                               // MAJ Septembre 2020: Marche à 99.9%! Des fois une touche colle, rarement. À diagnostiquer.
-
-    // ne PAS tenter de relacher les autres touches "virtuelles".
-    // sinon, les enchaînements avec modificateurs risquent de ne pas
-    // fonctionner. Traiter les edge cases en cas de vrais problèmes.
-  }
-  
+    
+    // "ancien fix" live
+    //clear_keyboard_but_mods(); // MAJ Septembre 2020: Marche à 99.9%! Des fois une touche colle, rarement. À diagnostiquer.
+  //}
 }
 
 
@@ -839,15 +891,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	// layer de base en bépo. permet de passer en QWERTY avec la touche à l'extrème droite en bas.
         [_BEPO] = LAYOUT( //layer type: base
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                                           ┌────────┬────────┬────────┬────────┬────────┬────────┐
-      BP_POUND, BP_1,    BP_2,    BP_3,    BP_4,   BP_5,                                                BP_8,    BP_9,    BP_0,   BP_EQUAL,BP_PERCENT,KC_BSPC,
+      CF_HASH, CF_1,    CF_2,    CF_3,    CF_4,     CF_5,                                               CF_8,    CF_9,    CF_0,   CF_EQL,  CF_PERC, KC_BSPC,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐                         ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-      KC_TAB,  BP_B,   BP_EACUTE, BP_P,    BP_O,  BP_EGRAVE, BP_6,                              BP_7,   BP_CIRC, BP_V,    BP_D,    BP_L,    BP_J,    BP_CCED,
+      KC_TAB,  CF_B,    CF_EACU, CF_P,    CF_O,   CF_EGRV,   CF_6,                              CF_7,   CF_CIRC, CF_V,    CF_D,    CF_L,    CF_J,    BP_CCED,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-      KC_BSPC, BP_A,    BP_U,     BP_I,   BP_E,   BP_COMMA,  BP_Z,                              BP_W,   BP_C,    BP_T,    BP_S,    BP_R,    BP_N,    BP_M,
+      KC_BSPC, CF_A,    CF_U,     CF_I,   CF_E,   CF_COMM,   CF_Z,                              CF_W,   CF_C,    CF_T,    CF_S,    CF_R,    CF_N,    CF_M,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-      KC_LSFT, BP_AGRV, BP_Y,     BP_X,   BP_DOT,   BP_K,    BP_8,    BP_9,           KC_NO,  KC_NO,    BP_APOS, BP_Q,    BP_G,    BP_H,    BP_F,   KC_RSFT,
+      KC_LSFT, BP_AGRV, CF_Y,     CF_X,   CF_DOT,   CF_K,    CF_8,    CF_9,          WS_PREV, WS_NEXT,  CF_QUOT, CF_Q,    CF_G,    CF_H,    CF_F,   KC_RSFT,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤
-      KC_LCTL, MO(_FN),KC_LGUI, LALT_T(KC_ESC),MO(_MOVE),   BP_SPC,  KC_TAB,          KC_RALT, KC_ENT,      KC_RALT,      KC_APP, KC_RCTL, TG(_NATIVE),TO(_QWERTY)
+      KC_LCTL, MO(_FN),KC_LGUI, LALT_T(KC_ESC),MO(_MOVE),   KC_SPC,  KC_TAB,          KC_RALT, KC_ENT,     KC_RALT,      KC_APP, KC_RCTL, TG(_NATIVE),TO(_QWERTY)
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
 			 ),
 	// layer QWERTY pour compatibilité.
@@ -859,7 +911,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
       KC_BSPC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,   KC_LBRC,                           KC_RBRC,  KC_H,   KC_J,     KC_K,    KC_L,   KC_SCLN, KC_QUOT,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-      KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   KC_NO,   KC_NO,           KC_NO,   KC_NO,    KC_N,   KC_M,   KC_COMM,  KC_DOT,  KC_SLSH, KC_RSFT,
+      KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   KC_NO,   KC_NO,           WS_PREV, WS_NEXT,  KC_N,   KC_M,   KC_COMM,  KC_DOT,  KC_SLSH, KC_RSFT,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤   
       KC_LCTL, MO(_FN), KC_LGUI,LALT_T(KC_ESC),TT(_MOVE),   KC_SPC,  KC_TAB,          KC_RALT, KC_ENT,     KC_RALT,       KC_APP, KC_RCTL,  KC_NO,  TO(_BEPO)
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
@@ -878,7 +930,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_LCTL, KC_TRNS, KC_LGUI, KC_LALT,       KC_NO,       KC_NO,   KC_NO,           KC_NO,   KC_ENT,      KC_P0,       KC_PDOT,  KC_ENT,  KC_NO,   RESET
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
 		     ),
-	// il semble que mes manipulations avec BP_chiffres etc ne joue pas bien avec certains raccourcis tels que les alt+shift+1 dans i3 sous Linux.
+	// il semble que mes manipulations avec CF_chiffres etc ne joue pas bien avec certains raccourcis tels que les alt+shift+1 dans i3 sous Linux.
 	// ce layer est essentiellement mon "failsafe default" si les raccourcis avancés ne marchent pas, qui lance les touches "nativement"
         [_NATIVE] = LAYOUT( //layer type: toggle
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                                           ┌────────┬────────┬────────┬────────┬────────┬────────┐
@@ -912,13 +964,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                                           ┌────────┬────────┬────────┬────────┬────────┬────────┐
       KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                               KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐                         ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-      KC_NO,   KC_NO,   KC_NO,   KC_NO,   BP_O,  BP_EGRAVE, KC_NO,                             KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+      KC_NO,   KC_NO,   KC_NO,   KC_NO,   CF_O,  CF_EGRV, KC_NO,                             KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-    TO(_BEPO), BP_A,    BP_U,    BP_I,    BP_E,    KC_NO,   KC_NO,                             KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+    TO(_BEPO), CF_A,    CF_U,    CF_I,    CF_E,    KC_NO,   KC_NO,                             KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
       KC_LSFT,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,           KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_RSFT,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤
-      KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO,       BP_SPC,  KC_NO,           KC_NO,   KC_NO,       KC_NO,         KC_NO,  KC_NO,   KC_NO,  TO(_BEPO)
+      KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO,       KC_SPC,  KC_NO,           KC_NO,   KC_NO,       KC_NO,         KC_NO,  KC_NO,   KC_NO,  TO(_BEPO)
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
 			 ),
 
@@ -926,13 +978,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                                           ┌────────┬────────┬────────┬────────┬────────┬────────┐
       KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                               KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐                         ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-      KC_NO,   KC_NO,  BP_EACUTE,KC_NO,   BP_O,    KC_NO,   KC_NO,                             KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+      KC_NO,   KC_NO,  CF_EACU,KC_NO,   CF_O,    KC_NO,   KC_NO,                             KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-    TO(_BEPO), BP_A,   BP_U,    BP_I,    BP_E,    KC_NO,   KC_NO,                             KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+    TO(_BEPO), CF_A,   CF_U,    CF_I,    CF_E,    KC_NO,   KC_NO,                             KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
       KC_LSFT, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,           KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_RSFT,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤
-      KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO,       BP_SPC,  KC_NO,           KC_NO,   KC_NO,       KC_NO,         KC_NO,  KC_NO,   KC_NO,  TO(_BEPO)
+      KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO,       KC_SPC,  KC_NO,           KC_NO,   KC_NO,       KC_NO,         KC_NO,  KC_NO,   KC_NO,  TO(_BEPO)
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
 			 ),
 
@@ -940,13 +992,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                                           ┌────────┬────────┬────────┬────────┬────────┬────────┐
       KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                               KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐                         ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-      KC_NO,   KC_NO,   KC_NO,   KC_NO,   BP_O,    KC_NO,  BP_CIRC,                            KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+      KC_NO,   KC_NO,   KC_NO,   KC_NO,   CF_O,    KC_NO,  CF_CIRC,                            KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-    TO(_BEPO), BP_A,    BP_U,    BP_I,    BP_E,    KC_NO,   KC_NO,                             KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+    TO(_BEPO), CF_A,    CF_U,    CF_I,    CF_E,    KC_NO,   KC_NO,                             KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
       KC_LSFT, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,           KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_RSFT,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤
-      KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO,       BP_SPC,  KC_NO,           KC_NO,   KC_NO,       KC_NO,         KC_NO,  KC_NO,   KC_NO,  TO(_BEPO)
+      KC_NO,   KC_NO,   KC_NO,   KC_NO,        KC_NO,       KC_SPC,  KC_NO,           KC_NO,   KC_NO,       KC_NO,         KC_NO,  KC_NO,   KC_NO,  TO(_BEPO)
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
 			 ),	
 };
@@ -957,37 +1009,66 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Section RGB, complètement rippé des exampdes de la docu qmk:
 //     https://docs.qmk.fm/#/feature_rgblight 
 
-// TODO: Faire marcher en tant que right master. actuellement ne
-// marche pas et on DOIT flasher les deux bords pour réfléter les
-// changements, tel que le wiki Redox le disait
+// on DOIT flasher les deux bords pour réfléter les changements, tel
+// que le wiki Redox le disait
 
 const rgblight_segment_t PROGMEM my_canadian_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 14, HSV_CYAN}
-    //{12, 4, HSV_RED}       // Light 4 LEDs, starting with LED 12
+    									   {5,2,HSV_RED},
+									   {7,2,HSV_RED}		
+									   
+									   /*{0,1,HSV_BLUE},
+									     ...
+									     {6,1,HSV_RED},
+									   
+									     {7,1,HSV_RED},
+									     ...
+									     {13,1,HSV_BLUE},*/
 );
 
 const rgblight_segment_t PROGMEM my_bepo_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 14, HSV_BLUE}       // Light 4 LEDs, starting with LED 6
+									   {5,2,HSV_BLUE},
+									   {7,2,HSV_BLUE}
 );
+
+const rgblight_segment_t PROGMEM my_move_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+									   // 6-7 ordinairement inner leds
+									   // 0-13 ordinairement outer leds
+									   {0,2,HSV_GREEN},									   
+									   {12,2,HSV_GREEN}
+);
+
+const rgblight_segment_t PROGMEM my_func_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+									   {0,2,HSV_MAGENTA},									   
+									   {12,2,HSV_MAGENTA}
+);
+
+
 
 // Now define the array of layers. Later layers take precedence
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
-    my_bepo_layer,
-    my_canadian_layer    // Overrides caps lock layer
+									       my_func_layer,
+									       my_move_layer,
+									       my_bepo_layer,
+									       my_canadian_layer
+
 );
 
 void keyboard_post_init_user(void) {
     // Enable the LED layers
     rgblight_layers = my_rgb_layers;
     
-    // debug main de droite qui ne respecte plus les activations de layers de lumière...
-    rgblight_set_layer_state(1, true); //active le layer lumière bépo d'abord
+    rgblight_set_layer_state(2, true); //active le layer lumière bépo d'abord
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    // Both layers will light up if both kb layers are active
-    rgblight_set_layer_state(1, layer_state_cmp(state, _QWERTY));
-    rgblight_set_layer_state(0, layer_state_cmp(state, _BEPO));
+    rgblight_set_layer_state(3, layer_state_cmp(state, _QWERTY));
+    rgblight_set_layer_state(1, layer_state_cmp(state, _MOVE));
+    rgblight_set_layer_state(0, layer_state_cmp(state, _FN));
+    return state;
+}
+
+layer_state_t default_layer_state_set_user(layer_state_t state) {
+    rgblight_set_layer_state(2, layer_state_cmp(state, _BEPO));
     return state;
 }
 
