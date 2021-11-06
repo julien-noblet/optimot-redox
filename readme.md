@@ -13,38 +13,32 @@ système d'exploitation ayant la disposition [Canadien
 Français](http://kbdlayout.info/KBDCA/). En d'autre termes,
 l'utilisation de cette disposition est la suivante:
 
-* En tout temps, le OS (Windows et Linux testé, support Mac inconnu)
-  aura comme seul disposition de touches de configuré comme étant le
-  Canadien Français.
-* Lorsque la couche principale est utilisée, cette disposition agit
-  comme un clavier Bépo du point de vue de l'utilisation, mais envoit
-  réellement au système d'exploitation les combinaisons de touches
-  compatibles avec la disposition Canadien Français installé sur le
-  OS. Essentiellement, cette disposition de touches Redox fait la
-  traduction (un genre de « /wrapper/ ») de Bépo vers le Canaiden
-  Français.
-* Le clavier Redox agira en bon vieux QWERTY lorsqu'en couche 1, une
-  fois qu'on appuie sur la touche du coin en bas à droite sur la
-  moitié de droite. Il est programmé le plus nativement possible pour
-  les touches alphanumériques. (Évidemment, les autres touches sont
-  des ajustements qui sont un peu plus "personnel", je présume que
+* En tout temps, le OS (Windows et Linux testé, support Mac inconnu) aura comme
+  seul disposition de touches de configuré comme étant le Canadien Français.
+* Lorsque la couche principale est utilisée, cette disposition agit comme un
+  clavier Bépo du point de vue de l'utilisation, mais envoit réellement au
+  système d'exploitation les combinaisons de touches compatibles avec la
+  disposition Canadien Français installé sur le OS. Essentiellement, cette
+  disposition de touches Redox fait la traduction (un genre de « /wrapper/ ») de
+  Bépo vers le Canaiden Français.
+* Le clavier Redox agira en bon vieux QWERTY lorsqu'en couche 1, une fois qu'on
+  appuie sur la touche "Switch" dans le coin droit. Il est programmé le plus
+  nativement possible pour les touches alphanumériques. (Évidemment, les autres
+  touches sont des ajustements qui sont un peu plus "personnel", je présume que
   ceci est la norme en QMK)
   
 Pourquoi?
 
-* Préférence et habitude personnelle d'utiliser le Canadien Français
-  plutot que le standard Canadien Multilingue (« CSA »). Quoique ce
-  point n'est pas nécessaire lorsqu'on utilise le clavier Redox en
-  Bépo en soi, ça devient pertinent sur un ordinateur portable où le
-  clavier intégré reste natif en Canadien Français;
+* Préférence et habitude personnelle d'utiliser le Canadien Français plutot que
+  le standard [Canadien Multilingue (« CSA
+  »)](https://github.com/qmk/qmk_firmware/blob/master/layouts/community/ergodox/bepo_csa/readme.md).
 * Je voulais de quoi de « cross-platform » pour mes usages Windows et
   Linux. Unifier la disposition des touches dans tout mes OS semblait
   être un moyen de simplifier la configuration;
-* « Wife acceptance factor »: je voulais que ma conjointe soit en
-  mesure d'utiliser ce clavier lorsque branché à mon PC à la maison en
-  échangeant très facilement de config clavier. Actuellement, appuyer
-  sur la touche d'extrème droite en bas, sur la partie de droite, sert
-  de « switch » entre le Bépo et le QWERTY;
+* « Wife acceptance factor »: je voulais que ma conjointe soit en mesure
+  d'utiliser ce clavier lorsque branché à mon PC à la maison en échangeant très
+  facilement de config clavier. (Mise à jour 1 an plus tard: ceci s'avère être
+  un échec :-) )
 * Il y a peut-être une tonne de mauvaises pratiques QMK dans le code.
   Les habitués de QMK saigneront peut-être des yeux en consultant le
   code, mais je le partage en tant que "newbie" qui en a arrivé à une
@@ -54,11 +48,23 @@ Pourquoi?
 
 ## Layers supplémentaires
 
+### AltGr
+![Layer AltGr](./images/keyboard-layout-altgr.png) 
+
+Le layer AltGr tente de répliquer le comportement des caractères base de Bépo.
+Les "touches mortes" du diagramme sont directement les touches mortes
+correspondantes du clavier Canadien Français du système d'exploitation.
+
+Notez également que la série de touches `à`-`y`-`x`-`.`-`k` a été dévié du
+standard Bépo pour: `\`-`{`-`|`-`}`-`~` sous `AltGr`
+
 ### Mouvement
 
 ![Layer Mouvement](./images/keyboard-layout-move.png) 
 
-Les touches de la main droite ont été inspirés par le positionnement `H-J-K-L` de l'éditeur Vi/Vim, quoique pas exclusif à Vi (ex: Gmail, Youtube, DuckDuckGo, ...)
+Les touches de la main droite ont été inspirés par le positionnement `H-J-K-L`
+de l'éditeur Vi/Vim, quoique pas exclusif à Vi (ex: Gmail, Youtube, DuckDuckGo,
+...)
 
 ### Fonctions
 
@@ -72,54 +78,18 @@ Les touches de la main droite ont été inspirés par le positionnement `H-J-K-L
   ont été connectés ensemble qui fait en sorte que le RGB répond aux
   commandes seulement lorsque connecté à gauche.
 
-### Touches Natives (en cas de pépins avec le layer Bépo)
-
-![Layer Natif](./images/keyboard-layout-native.png) 
-
-Ceci est pourrait être requis pour contourner les potentiels troubles
-avec touches spéciales (implicant les F-Keys, modificateurs, ...) et
-qui ne seraient pas fonctionnel sous la couche Bépo dans une
-combinaison spéciale que je n'aurais pas vu ou testé.
-
-### AltGr
-
-![Layer AltGr](./images/keyboard-layout-altgr.png) 
-
-La touche AltGr est "presque" standard avec Bépo, sauf pour la
-dernière rangée de gauche. (Selon mes besoins).
-
-Les touches mortes notés en gris sont répertoriés dans les layers
-ci-bas. Seuls les lettres utiles dans le Français courant pour le
-Québec (Canadien Français « *d'Amarique du Nord* » ) a été
-implanté dans ce keymap.
-
-Les lettres d'accent (ex: `^`) sont atteignables en appuyant sur
-espace, chose possible sur le clavier Canadien Français de base.
-
-### AltGr Grave (touche morte)
-
-![Layer Grave](./images/keyboard-layout-altgr-grave.png) 
-
-
-### AltGr Aigu (touche morte)
-
-![Layer Aigu](./images/keyboard-layout-altgr-acute.png) 
-
-### AltGr Circonflexe (touche morte)
-
-![Layer Circonflexe](./images/keyboard-layout-altgr-circ.png) 
-
 
 ## Omissions, déviation du standard Bépo et autres notes
 Tel que mentionné plus haut, j'ai fait de mon mieux pour faire marcher
-l'alphabet de base sous Bépo mais pas toutes les couches, car une
-bonne partie ne fonctionnerait pas de manière /cross-platform/ entre
-plusieurs OS. De plus, notez ces détails:
+l'alphabet de base sous Bépo ainsi que les caractères accentués les plus
+fréquents au Québec, mais pas toutes les couches, car une bonne partie ne
+fonctionnerait pas de manière /cross-platform/ entre plusieurs OS. De plus,
+notez ces détails:
 
 * Seulement les touches les plus communes, accessibles depuis le
   clavier Canadien Français, ont été transcris sur ce keymap. Ce n'est
   pas une solution "complète" ayant absolument tous les caractères
-  inimaginables et obscures de Bépo :)
+  inimaginables et obscures du Bépo :)
 * Dû à la dispositon physique de clavier Redox, il me manquait en fait
   les touches à droite pour les lettres `z` et `w` sur la première
   rangée. Je les ai donc mis sur les touches doubles dans le milieu du
@@ -130,15 +100,16 @@ plusieurs OS. De plus, notez ces détails:
 * J'ai personnalisé la série de touches `à`-`y`-`x`-`.`-`k` pour
   l'accès avec le modifieur `AltGr`, pour cette série non standard:
   `\`-`{`-`|`-`}`-`~`
-* Il y a une touche raccourci `Alt+F4` sur la touche `Déplacement+É`,
-  qui imite vaguement un `Ctrl+W` sur un clavier QWERTY.
+* Il y a une touche raccourci `Alt+F4` sur la touche `Déplacement+É`, qui imite
+  vaguement le réflexe d'un `Ctrl+W` sur un clavier QWERTY.
 * La touche d'extrème-droite d'en haut, BackSpace, sert
   essentiellement de compatibilité pour les pauvres gens empruntant
   mon clavier sous QWERTY; je ne savais pas à quoi l'attribuer sous
   Bépo. Je suis au courant de la redondance avec la touche à
   l'emplacement CapsLock d'un clavier standard :)
   * Également je reconnais la redondance pour Tab, au pouce gauche et
-    à son emplacement standard.
+    à son emplacement standard. J'ai énormément de misère à désapprendre mon
+    réflexe Tab avec le petit doigt.
 * Mon *killer app* personnel est d'utiliser la disposition du
   mouvement de base de vim (touches `hjkl` QWERTY) tel quel sur ma
   main droite: en tenant la touche "Déplacement" et utiliser `CTSR`
@@ -146,23 +117,12 @@ plusieurs OS. De plus, notez ces détails:
   marqués en rouge sur la main droite dans l'image résumé du début du
   readme.
 
-### Bugs connus
-* Bug (correctif en cours de test): Relâcher plusieurs touches fait
-  relâcher toutes les keypress en cours sous les layers non-QWERTY
-  (Bépo, Mouvements). Ceci engendre un problème en gaming lorsqu'on
-  déplace un personnage sur deux axes à la fois avec les flèches (ex:
-  taper sur haut+gauche en même temps et relâcher une des flèches fait
-  relâcher les DEUX boutons). 
-  * Bug majeur à diagnostiquer: gels complet du clavier vraiment
-    random, en lien avec l'utilisation de la touche mouvement. Le
-    clavier gèle tout le temps en ayant mes LEDs de layer movement
-    d'activé. Cause exacte inconnue, mais ça s'est mis à se produire
-    lorsque le correctif ci-haut a été appliqué. Arrive environ une
-    fois par heure.
-* À vérifier: quelquefois, le `@` et certaines autres touches de la
-  série AltGr+[chiffre] en Canadien Français ne se fait plus. Ça
-  pourrait être mon installation au travail entre Windows 10 et
-  mRemoteNG qui cause un trouble non relié au clavier.
+### Bugs connus - état du projet
+* Aucun bugs restant en date du commit du 6 Novembre 2021?? Je me croise les
+  doigts d'avoir réglé:
+  * Gels complet du clavier en lien avec la touche `_MOVE`
+  * Répétitions involontaires des touches au-dessus de l'alphabet du clavier
+    (pas 100% certain, en cours de test)
 
 ## Installation
 Quoique pas un guide officiel, je vais présumer qu'il y a possibilité

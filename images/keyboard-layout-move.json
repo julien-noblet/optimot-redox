@@ -45,11 +45,13 @@
     },
     "Impr.\n\n\n\n\n\nÉcran",
     {
-      "x": 8.5
+      "x": 8.5,
+      "f": 3
     },
     "Souris\nBas\n\n\n\n\nMolette",
     {
-      "x": 1
+      "x": 1,
+      "f": 3
     },
     "Souris\nDroit\n\n\n\n\nMolette"
   ],
@@ -63,7 +65,8 @@
     "Pause",
     {
       "x": 6.5,
-      "a": 5
+      "a": 5,
+      "f": 3
     },
     "Souris\nGauche\n\n\n\n\nMolette"
   ],
@@ -81,10 +84,12 @@
     "ACL1",
     {
       "x": 14.5,
-      "a": 5
+      "a": 5,
+      "f": 3
     },
     "Souris\n\n\n\n\n\nBouton3",
     {
+      "f": 3,
       "w": 1.5
     },
     "Souris\nHold\n\n\n\n\nBouton1"
@@ -109,7 +114,8 @@
     "",
     {
       "x": 10.5,
-      "a": 5
+      "a": 5,
+      "f": 3
     },
     "Souris\nHaut\n\n\n\n\nMove"
   ],
@@ -127,11 +133,13 @@
     "",
     {
       "x": 8.5,
-      "a": 5
+      "a": 5,
+      "f": 3
     },
     "Souris\nBas\n\n\n\n\nMove",
     {
-      "x": 1
+      "x": 1,
+      "f": 3
     },
     "Souris\nDroit\n\n\n\n\nMove"
   ],
@@ -144,7 +152,8 @@
     "",
     {
       "x": 6.5,
-      "a": 5
+      "a": 5,
+      "f": 3
     },
     "Souris\nGauche\n\n\n\n\nMove"
   ],
@@ -158,10 +167,12 @@
     "",
     {
       "x": 14.5,
-      "a": 5
+      "a": 5,
+      "f": 3
     },
     "Souris\n\n\n\n\n\nBouton1",
     {
+      "f": 3,
       "w": 1.5
     },
     "Souris\n\n\n\n\n\nBouton2"
@@ -170,11 +181,13 @@
     {
       "y": -0.625,
       "x": 6.5,
+      "f": 3,
       "h": 1.5
     },
     "WWW\nPréc.\n\n\n\n\nPage",
     {
       "x": 4.5,
+      "f": 3,
       "h": 1.5
     },
     "WWW\nSuiv.\n\n\n\n\nPage"
@@ -363,14 +376,19 @@
     "Super",
     {
       "x": 12.5,
-      "t": "#000000"
+      "c": "#ff9ced",
+      "t": "#000000",
+      "fa": [
+        1
+      ]
     },
-    ""
+    "➔ BÉPO"
   ],
   [
     {
       "y": -0.75,
       "x": 0.5,
+      "c": "#cccccc",
       "t": "#999999",
       "f": 3
     },
@@ -384,15 +402,9 @@
     },
     "",
     {
-      "c": "#ff9ced",
-      "t": "#000000",
-      "a": 5,
-      "fa": [
-        1,
-        1
-      ]
+      "t": "#000000"
     },
-    "BÉPO\nQWERTY\n\n\n\n\n⇵"
+    ""
   ],
   [
     {
@@ -403,9 +415,10 @@
       "x": -0.6500000000000004,
       "c": "#d17777",
       "t": "#000000\n\n\n\n#2d2d2d",
+      "a": 5,
       "fa": [
         1,
-        1,
+        0,
         0,
         0,
         0,

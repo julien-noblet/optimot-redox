@@ -166,6 +166,6 @@
 #define CF_ACUT ALGR(CF_EACU)  // ´ (dead)
 
 //#define CF_CCED MACRO(I(50), T(CF_CED), T(CF_C)) // ç
-//#define CF_AGRV MACRO(I(50), T(CF_EGRV), T(CF_A)) // à
+//#define CF_AGRV MACRO(I(50), T(QUOT), T(A)) // à
 // DEPRECATED
 //#define GR2A(kc) RCTL(kc)
