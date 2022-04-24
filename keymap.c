@@ -446,8 +446,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
 
       if (keycode == CF_I) {
-	register_code(KC_I);
-	return false;      
+	if ((current_mods & MOD_BIT (KC_RALT))) {
+	  // laisser le clavier du OS gérer la touche morte trema
+	  unregister_code(KC_RALT);
+
+	  register_code(KC_LSFT);
+	  tap_code(KC_RBRC);
+	  unregister_code(KC_LSFT);
+	}
+	else { // 'i'
+	  register_code(KC_I);
+	}
+	return false;
+	//code original I seulement: 
+	//register_code(KC_I);
+	//return false;      
       }
 
       if (keycode == CF_E) {
