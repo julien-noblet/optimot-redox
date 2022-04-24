@@ -51,78 +51,39 @@ Pourquoi?
 ### AltGr
 ![Layer AltGr](./images/keyboard-layout-altgr.png) 
 
-Le layer AltGr tente de répliquer le comportement des caractères base de Bépo.
-Les "touches mortes" du diagramme sont directement les touches mortes
-correspondantes du clavier Canadien Français du système d'exploitation.
+Le layer AltGr tente de répliquer le comportement de **certains** caractères de base de Bépo, et spécifiquement pour les besoins d'un utilisateur du clavier Canadien Français: les "touches mortes" du diagramme sont directement les touches mortes du clavier Canadien Français du système d'exploitation, et ce clavier ne va pas jusqu'à remettre en fonction les caractères non disponibles en Canadien Français.
 
-Notez également que la série de touches `à`-`y`-`x`-`.`-`k` a été dévié du
-standard Bépo pour: `\`-`{`-`|`-`}`-`~` sous `AltGr`
+Notez également que la série de touches `à`-`y`-`x`-`.`-`k` a été dévié du standard Bépo pour: `\`-`{`-`|`-`}`-`~` sous `AltGr`
 
 ### Mouvement
 
 ![Layer Mouvement](./images/keyboard-layout-move.png) 
 
-Les touches de la main droite ont été inspirés par le positionnement `H-J-K-L`
-de l'éditeur Vi/Vim, quoique pas exclusif à Vi (ex: Gmail, Youtube, DuckDuckGo,
-...)
+Les touches de la main droite ont été inspirés par le positionnement `H-J-K-L` de l'éditeur Vi/Vim, quoique pas exclusif à Vi (ex: Gmail, Youtube, DuckDuckGo, ...)
 
 ### Fonctions
 
 ![Layer Function](./images/keyboard-layout-fn.png) 
 
-* Le mode reset met le clavier en mode programmation, prêt pour
-  flasher un nouveau firmware. Ceci est l'équivalent à appuyer sur le
-  bouton au dos du clavier.
-* Le RGB ne fonctionne seulement que si on branche le câble USB à
-  gauche. Il existe une limitation dans la façon que les composantes
-  ont été connectés ensemble qui fait en sorte que le RGB répond aux
-  commandes seulement lorsque connecté à gauche.
-
+* Le mode reset met le clavier en mode programmation, prêt pour flasher un nouveau firmware. Ceci est l'équivalent à appuyer sur le bouton au dos du clavier.
+* Le RGB ne fonctionne seulement que si on branche le câble USB à gauche. Il existe une limitation dans l'assemblage électronique qui fait en sorte que le RGB répond aux commandes seulement lorsque connecté à gauche.
 
 ## Omissions, déviation du standard Bépo et autres notes
-Tel que mentionné plus haut, j'ai fait de mon mieux pour faire marcher
-l'alphabet de base sous Bépo ainsi que les caractères accentués les plus
-fréquents au Québec, mais pas toutes les couches, car une bonne partie ne
-fonctionnerait pas de manière /cross-platform/ entre plusieurs OS. De plus,
-notez ces détails:
+Tel que mentionné plus haut, j'ai fait de mon mieux pour faire marcher l'alphabet de base sous Bépo ainsi que les caractères accentués les plus fréquents au Québec, mais pas toutes les couches, car une bonne partie ne fonctionnerait pas de manière /cross-platform/ entre plusieurs OS. De plus, notez ces détails:
 
-* Seulement les touches les plus communes, accessibles depuis le
-  clavier Canadien Français, ont été transcris sur ce keymap. Ce n'est
-  pas une solution "complète" ayant absolument tous les caractères
-  inimaginables et obscures du Bépo :)
-* Dû à la dispositon physique de clavier Redox, il me manquait en fait
-  les touches à droite pour les lettres `z` et `w` sur la première
-  rangée. Je les ai donc mis sur les touches doubles dans le milieu du
-  clavier, ceux faisant partie des rangées 2 et 3, de façon temporaire
-  à l'origine. Eh bien dans mon cas j'ai assez vite ré-appris avec ces
-  emplacements non-officiel, ce qui en fait que je l'ai publié dans le
-  projet tel-quel.
-* J'ai personnalisé la série de touches `à`-`y`-`x`-`.`-`k` pour
-  l'accès avec le modifieur `AltGr`, pour cette série non standard:
-  `\`-`{`-`|`-`}`-`~`
-* Il y a une touche raccourci `Alt+F4` sur la touche `Déplacement+É`, qui imite
-  vaguement le réflexe d'un `Ctrl+W` sur un clavier QWERTY.
-* La touche d'extrème-droite d'en haut, BackSpace, sert
-  essentiellement de compatibilité pour les pauvres gens empruntant
-  mon clavier sous QWERTY; je ne savais pas à quoi l'attribuer sous
-  Bépo. Je suis au courant de la redondance avec la touche à
-  l'emplacement CapsLock d'un clavier standard :)
-  * Également je reconnais la redondance pour Tab, au pouce gauche et
-    à son emplacement standard. J'ai énormément de misère à désapprendre mon
-    réflexe Tab avec le petit doigt.
-* Mon *killer app* personnel est d'utiliser la disposition du
-  mouvement de base de vim (touches `hjkl` QWERTY) tel quel sur ma
-  main droite: en tenant la touche "Déplacement" et utiliser `CTSR`
-  comme étant mes flèches du clavier. Voir les attribution de touches
-  marqués en rouge sur la main droite dans l'image résumé du début du
-  readme.
+* Seulement les touches les plus communes, accessibles depuis le clavier Canadien Français, ont été transcris sur ce keymap. Ce n'est pas une solution "complète" ayant absolument tous les caractères inimaginables et obscures du Bépo :)
+* Dû à la dispositon physique de clavier Redox, il me manquait en fait les touches à droite pour les lettres `z` et `w` sur la première rangée. Je les ai donc mis sur les touches doubles dans le milieu du clavier, ceux faisant partie des rangées 2 et 3, de façon temporaire à l'origine. Eh bien dans mon cas j'ai assez vite ré-appris avec ces emplacements non-officiel, ce qui en fait que je l'ai publié dans le projet tel-quel.
+* J'ai personnalisé la série de touches `à`-`y`-`x`-`.`-`k` pour l'accès avec le modifieur `AltGr`, pour cette série non standard: `\`-`{`-`|`-`}`-`~`
+* Il y a une touche raccourci `Alt+F4` sur la touche `Déplacement+É`, qui imite vaguement le réflexe d'un `Ctrl+W` sur un clavier QWERTY.
+* La touche d'extrème-droite d'en haut, BackSpace, sert essentiellement de compatibilité pour les pauvres gens empruntant mon clavier sous QWERTY; je ne savais pas à quoi l'attribuer sous Bépo. Je suis au courant de la redondance avec la touche à l'emplacement CapsLock d'un clavier standard :)
+* Également je reconnais la redondance pour Tab, au pouce gauche et à son emplacement standard. J'ai énormément de misère à désapprendre mon réflexe Tab avec le petit doigt.
+* Mon *killer app* personnel est d'utiliser la disposition du mouvement de base de vim (touches `hjkl` QWERTY) tel quel sur ma main droite: en tenant la touche "Déplacement" et utiliser `CTSR` comme étant mes flèches du clavier. Voir les attribution de touches marqués en rouge sur la main droite dans l'image résumé du début du readme.
 
 ### Bugs connus - état du projet
-* Aucun bugs restant en date du commit du 6 Novembre 2021?? Je me croise les
-  doigts d'avoir réglé:
+* Aucun bugs restant en date du commit du 6 Novembre 2021?? Je me croise les doigts d'avoir réglé:
   * Gels complet du clavier en lien avec la touche `_MOVE`
-  * Répétitions involontaires des touches au-dessus de l'alphabet du clavier
-    (pas 100% certain, en cours de test)
+  * Répétitions involontaires des touches au-dessus de l'alphabet du clavier (pas 100% certain, en cours de test)
+* Il existe une répétition du keypress pour les chiffres du pavé numérique (FN+Numpad à droite) lorsqu'on tient la touche FN, dans une condition inconnue pour le moment, mais qui implique l'activation/désactivation de layers probablement. Faire un power cycle du clavier (débrancher-rebrancher) régle le trouble temporairement jusqu'à temps qu'on redéclenche la condition inconnue.
 
 ## Installation
 Quoique pas un guide officiel, je vais présumer qu'il y a possibilité
@@ -132,8 +93,7 @@ genre avec vos modifications persos). J'en suis à mes premiers pas en
 QMK également alors voici comment j'ai fait pour en arriver à faire
 mon build:
 
-* La [procédure de
-  départ](https://beta.docs.qmk.fm/tutorial/newbs_getting_started) est
+* La [procédure de départ](https://docs.qmk.fm/#/newbs_getting_started) est
   à faire au complet, incluant le download du QMK Toolbox. La seule
   raison pourquoi je recommande de télécharger Toolbox est que,
   lorsque on met le clavier en mode RESET, Toolbox nous dit sur quelle
